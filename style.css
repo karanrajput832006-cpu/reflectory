@@ -27,8 +27,15 @@
   margin-bottom: 10px;
 }
 
-.steps ol {
+.steps ol {/* Logo Styling */
+.logo {
+  width: 80px;      /* Adjust the size */
+  height: auto;     /* Keeps proportions correct */
+  margin: 8px 20px; /* Adds some space around */
+}
+
   text-align: left;
   display: inline-block;
   margin-top: 10px;
 }
+
