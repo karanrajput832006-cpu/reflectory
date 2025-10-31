@@ -1,0 +1,132 @@
+/* Global Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Font & Colors */
+body {
+  font-family: 'Poppins', sans-serif;
+  background-color: #ffffff;
+  color: #222;
+  line-height: 1.6;
+}
+
+/* Navbar */
+.navbar {
+  width: 100%;
+  background-color: #0A3D91; /* Royal Blue */
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 50px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+}
+
+.navbar .logo {
+  height: 40px;
+}
+
+.navbar a {
+  color: white;
+  text-decoration: none;
+  margin-left: 25px;
+  font-weight: 500;
+  transition: 0.2s;
+}
+
+.navbar a:hover,
+.navbar a.active {
+  text-decoration: underline;
+}
+
+/* Banner */
+.banner {
+  background-color: #f8faff;
+  text-align: center;
+  padding: 180px 20px 100px 20px;
+}
+
+.banner-logo {
+  height: 120px;
+  margin-bottom: 20px;
+}
+
+.mission-line {
+  color: #0A3D91;
+  font-weight: 500;
+  max-width: 900px;
+  margin: 0 auto 30px auto;
+  font-size: 1.2rem;
+}
+
+.cta-button {
+  background-color: #0A3D91;
+  color: white;
+  padding: 14px 30px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 500;
+  transition: background-color 0.3s;
+}
+
+.cta-button:hover {
+  background-color: #082f70;
+}
+
+/* Intro Section */
+.intro {
+  max-width: 1000px;
+  margin: 100px auto;
+  padding: 0 20px;
+  text-align: center;
+}
+
+.intro h2 {
+  color: #0A3D91;
+  margin-bottom: 20px;
+}
+
+.intro p {
+  font-size: 1.05rem;
+}
+
+/* Footer */
+.footer {
+  background-color: #0A3D91;
+  color: white;
+  text-align: center;
+  padding: 20px 0;
+  margin-top: 80px;
+}
+
+/* Responsive Styles */
+@media (max-width: 800px) {
+  .navbar {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 12px 20px;
+  }
+  .nav-right {
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 10px;
+  }
+  .nav-right a {
+    margin-left: 0;
+    margin-right: 20px;
+    margin-bottom: 8px;
+  }
+  .banner {
+    padding: 130px 10px 70px 10px;
+  }
+  .intro {
+    margin: 60px auto;
+    padding: 0 10px;
+  }
+}
