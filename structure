@@ -1,8 +1,0 @@
-reflectory/
-│
-├─ index.html
-├─ assets/
-   ├─ css/
-   │   └─ style.css
-   └─ images/
-       └─ logo.png   ✅ (your logo must be here)
