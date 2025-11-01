@@ -1,0 +1,51 @@
+/* Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+/* Navbar */
+.navbar {
+    width: 100%;
+    background-color: #1e1e2f; /* Dark Blue Theme */
+    color: white;
+    padding: 15px 40px;
+    display: flex;
+    align-items: center;
+}
+
+.nav-left {
+    display: flex;
+    align-items: center;
+}
+
+.logo {
+    width: 55px; /* Small logo size */
+    margin-right: 10px;
+}
+
+.site-title {
+    font-size: 1.5rem;
+    font-weight: 600;
+}
+
+/* Hero Section */
+.hero {
+    width: 100%;
+    text-align: center;
+    padding: 70px 20px;
+    background-color: #f4f6ff;
+}
+
+.hero h2 {
+    font-size: 2rem;
+    margin-bottom: 15px;
+    color: #1e1e2f;
+}
+
+.hero p {
+    font-size: 1rem;
+    color: #333;
+}
