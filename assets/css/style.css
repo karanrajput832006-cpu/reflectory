@@ -71,3 +71,16 @@ nav a:hover {
 .hero button:hover {
     background-color: #0056b3;
 }
+/* Logo Styling */
+.logo {
+    width: 120px;   /* You can change this size */
+    height: auto;
+}
+
+.navbar {
+    width: 100%;
+    padding: 10px 20px;
+    display: flex;
+    align-items: center;
+    background-color: white;  /* Change if you want a color */
+}
