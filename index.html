@@ -44,20 +44,20 @@
 
         /* Sections */
         section {
-            display: none; /* Hidden by default (for multi-page effect) */
+            display: none;
             padding: 60px 20px;
             max-width: 1000px;
             margin: auto;
         }
         section.active {
-            display: block; /* Show only active section */
+            display: block;
         }
         h2 {
             text-align: center;
             color: #1E3A8A;
         }
 
-        /* Hero Section (Home Page) */
+        /* Hero Section */
         .hero {
             text-align: center;
             padding: 70px 20px;
@@ -87,7 +87,7 @@
 </head>
 <body>
 
-    <!-- ✅ Navbar -->
+    <!-- Navbar -->
     <header>
         <div class="logo">
             <img src="logo.png" alt="Reflectory Logo">
@@ -101,21 +101,22 @@
         </nav>
     </header>
 
-    <!-- ✅ Home / Hero Section -->
+    <!-- Home Section -->
     <section id="home" class="hero active">
         <img src="logo-big.png" alt="Reflectory Main Logo">
         <h2>Your Career, Your Choice, Our Guidance</h2>
         <p>Helping confused students choose the right path in life and career through AI + Mentorship.</p>
-        <button onclick="showPage('contact')">Get Started</button>
+        <!-- ✅ Button opens Google Form -->
+        <button onclick="window.open('https://forms.gle/5GCDs55aMftZUmt18', '_blank')">Get Started</button>
     </section>
 
-    <!-- ✅ About Page -->
+    <!-- About Section -->
     <section id="about">
         <h2>About Us</h2>
         <p>Reflectory is a mentorship platform designed to help confused students make the right academic and career choices using AI and human guidance.</p>
     </section>
 
-    <!-- ✅ Services Page -->
+    <!-- Services Section -->
     <section id="services">
         <h2>Our Services</h2>
         <p>✔ Personalized Career Mentorship<br>
@@ -124,7 +125,7 @@
            ✔ Skill Development Roadmaps</p>
     </section>
 
-    <!-- ✅ Contact Page -->
+    <!-- Contact Section -->
     <section id="contact">
         <h2>Contact Us</h2>
         <p>Email: reflectory.support@gmail.com<br>
@@ -132,12 +133,12 @@
            Location: Palanpur, Gujarat</p>
     </section>
 
-    <!-- ✅ Footer -->
+    <!-- Footer -->
     <footer>
         <p>© 2025 Reflectory. All Rights Reserved.</p>
     </footer>
 
-    <!-- ✅ JavaScript for Multi-Page Function -->
+    <!-- JavaScript -->
     <script>
         function showPage(pageId) {
             const sections = document.querySelectorAll('section');
