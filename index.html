@@ -484,7 +484,7 @@
           <div style="height:12px"></div>
           <p class="small">To apply, click the button below and fill the membership application form.</p>
           <div style="height:10px"></div>
-          <a class="btn" href="https://forms.gle/ARY3Mkq1MdGAWVav5" target="_blank" rel="noopener">Apply Now</a>
+          <a class="btn" href="https://forms.gle/jZ12TnJLXF8GKw2r7" target="_blank" rel="noopener">Apply Now</a>
         </div>
 
         <div style="flex:1; min-width:280px;">
@@ -739,7 +739,7 @@
 
         // Open user's mail client with prefilled content (fallback)
         const subject = encodeURIComponent('Reflectory - Quick join request from ' + name);
-        const body = encodeURIComponent('Name: ' + name + '\\nEmail: ' + email + '\\nRole: ' + role + '\\n\\nMessage:\\n' + msg);
+        const body = encodeURIComponent('Name: ' + name + '\nEmail: ' + email + '\nRole: ' + role + '\n\nMessage:\n' + msg);
         window.location.href = 'mailto:hello@reflectory.org?subject=' + subject + '&body=' + body;
 
         const fb = document.getElementById('quickJoinFeedback');
@@ -765,7 +765,7 @@
 
         // Use mailto to open user's email client with content
         const subject = encodeURIComponent('Reflectory - Contact from ' + name);
-        const body = encodeURIComponent('Name: ' + name + '\\nEmail: ' + email + '\\n\\nMessage:\\n' + message);
+        const body = encodeURIComponent('Name: ' + name + '\nEmail: ' + email + '\n\nMessage:\n' + message);
         window.location.href = 'mailto:hello@reflectory.org?subject=' + subject + '&body=' + body;
 
         const fb = document.getElementById('contactFeedback');
