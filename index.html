@@ -1,172 +1,472 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Reflectory – Guiding Students to Clarity and Discipline</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Reflectory – Guiding Students, Building Futures</title>
 
-    <style>
-        body {
-            margin: 0;
-            font-family: Arial, sans-serif;
-            background-color: white;
-            color: #333;
-        }
+  <style>
+    :root{
+      --bg: #ffffff;
+      --text: #222831;
+      --muted: #5a5a9f; /* supportive darker tone */
+      --primary: #6c63ff; /* supportive blue/purple */
+      --primary-dark: #574fe0;
+      --max-width: 1000px;
+      --radius: 10px;
+    }
 
-        /* Navbar */
-        header {
-            background-color: #1E3A8A;
-            color: white;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 10px 20px;
-        }
-        .logo {
-            display: flex;
-            flex-direction: column;
-            line-height: 1;
-        }
-        .logo img {
-            height: 45px;
-            width: auto;
-        }
-        .logo h1 {
-            margin: 5px 0 0;
-            font-size: 1.2rem;
-        }
-        .logo span {
-            font-size: 0.8rem;
-            opacity: 0.8;
-        }
-        nav a {
-            color: white;
-            margin: 0 12px;
-            text-decoration: none;
-            font-weight: bold;
-            cursor: pointer;
-        }
-        nav a:hover {
-            text-decoration: underline;
-        }
+    /* Base */
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+      background:var(--bg);
+      color:var(--text);
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      line-height:1.45;
+      scroll-behavior: smooth;
+    }
+    a{color:inherit}
 
-        /* Sections */
-        section {
-            display: none;
-            padding: 60px 20px;
-            max-width: 1000px;
-            margin: auto;
-        }
-        section.active {
-            display: block;
-        }
+    .container{
+      max-width:var(--max-width);
+      margin:0 auto;
+      padding:0 20px;
+    }
 
-        /* Hero Section */
-        .hero {
-            text-align: center;
-            padding: 80px 20px;
-            background-color: #EEF2FF;
-        }
-        .hero img {
-            width: 240px;
-            margin-bottom: 20px;
-        }
-        .hero h2 {
-            font-size: 2rem;
-            color: #1E3A8A;
-            margin-bottom: 10px;
-        }
-        .hero p {
-            font-size: 1rem;
-            margin-bottom: 20px;
-        }
-        .button-group {
-            margin-top: 20px;
-        }
-        .button-group button {
-            background-color: #1E3A8A;
-            color: white;
-            border: none;
-            margin: 5px;
-            padding: 12px 30px;
-            cursor: pointer;
-            border-radius: 5px;
-            font-size: 1rem;
-        }
+    /* NAVBAR */
+    header.site-header{
+      background:var(--bg);
+      border-bottom:1px solid rgba(20,20,40,0.04);
+      position:sticky;
+      top:0;
+      z-index:30;
+      backdrop-filter: blur(4px);
+    }
+    .nav-inner{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+      height:72px;
+    }
+    .brand {
+      display:flex;
+      align-items:center;
+      gap:12px;
+    }
+    /* logo placeholder */
+    .logo-placeholder{
+      width:48px;
+      height:48px;
+      background:linear-gradient(135deg,var(--primary),var(--muted));
+      border-radius:8px;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      color:white;
+      font-weight:700;
+      font-size:18px;
+      flex-shrink:0;
+    }
+    .brand h1{
+      font-size:18px;
+      margin:0;
+      color:var(--text);
+    }
+    .brand .tag{
+      display:block;
+      font-size:12px;
+      color:rgba(0,0,0,0.55);
+      margin-top:2px;
+    }
 
-        footer {
-            background-color: #1E3A8A;
-            color: white;
-            text-align: center;
-            padding: 15px 0;
-        }
-    </style>
+    nav.main-nav{
+      display:flex;
+      align-items:center;
+      gap:18px;
+    }
+    nav.main-nav a{
+      text-decoration:none;
+      color:var(--muted);
+      font-weight:600;
+      font-size:14px;
+      padding:6px 8px;
+      border-radius:8px;
+    }
+    nav.main-nav a:hover{ color:var(--primary); background: rgba(108,99,255,0.06); }
+
+    .cta-btn{
+      background:var(--primary);
+      color:white;
+      border:none;
+      padding:9px 16px;
+      border-radius:9px;
+      font-weight:700;
+      cursor:pointer;
+      font-size:14px;
+    }
+    .cta-btn:hover{ background:var(--primary-dark); }
+
+    /* HERO */
+    .hero{
+      padding:56px 0;
+      background:linear-gradient(180deg, rgba(108,99,255,0.06), rgba(90,90,159,0.02));
+      text-align:center;
+    }
+    .hero-inner{ max-width:920px; margin:0 auto; padding:0 20px; }
+    .hero-logo{
+      width:180px;
+      height:180px;
+      margin:0 auto 18px;
+      border-radius:12px;
+      background:linear-gradient(135deg,var(--primary),var(--muted));
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      color:white;
+      font-weight:800;
+      font-size:22px;
+      box-shadow: 0 10px 30px rgba(46,39,78,0.06);
+    }
+    .hero h1{
+      margin:0 0 10px;
+      font-size:1.9rem;
+      color:var(--muted);
+    }
+    .hero p.lead{
+      margin:0 auto 18px;
+      max-width:720px;
+      color: #3a3a4a;
+      font-size:1.02rem;
+    }
+    .hero .actions{ display:flex; gap:12px; justify-content:center; flex-wrap:wrap; margin-top:10px; }
+    .btn-outline{
+      background:transparent;
+      border:1px solid rgba(90,90,159,0.12);
+      color:var(--muted);
+      padding:10px 16px;
+      border-radius:8px;
+      font-weight:600;
+      cursor:pointer;
+    }
+    .btn-outline:hover{ border-color: rgba(90,90,159,0.24); color:var(--primary); }
+
+    /* SECTIONS */
+    section.content{
+      padding:48px 0;
+    }
+    .section-card{
+      background:transparent;
+      margin:0 auto 16px;
+      max-width:var(--max-width);
+      padding:0 20px;
+    }
+    h2.section-title{
+      text-align:center;
+      color:var(--muted);
+      margin-bottom:12px;
+      font-size:1.25rem;
+    }
+    p.lead-muted{
+      text-align:center;
+      color:#4a4a62;
+      max-width:780px;
+      margin:0 auto 18px;
+    }
+
+    /* ABOUT */
+    .about-wrap{
+      max-width:880px;
+      margin:18px auto 0;
+      color:#333;
+      line-height:1.6;
+      font-size:1rem;
+    }
+    .mission{
+      margin-top:12px;
+      font-style:normal;
+      color:#505073;
+      font-weight:600;
+      text-align:center;
+    }
+
+    /* PROGRAMS */
+    .grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+      gap:16px;
+      margin-top:18px;
+    }
+    .card{
+      background: #fff;
+      border:1px solid rgba(20,20,50,0.04);
+      padding:18px;
+      border-radius:10px;
+      box-shadow:0 6px 18px rgba(12,10,30,0.03);
+    }
+    .card h3{ margin:0 0 8px; color:var(--muted); font-size:16px }
+    .card p{ margin:0; color:#333; font-size:0.96rem }
+
+    /* WHY (logic + emotion) */
+    .why-grid{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap:18px;
+      align-items:center;
+      margin-top:18px;
+    }
+    .why-text{ font-size:1rem; color:#333; line-height:1.6 }
+    .why-emo{
+      background:linear-gradient(180deg, rgba(108,99,255,0.06), rgba(90,90,159,0.02));
+      padding:18px;
+      border-radius:10px;
+      color:#2b2b3a;
+    }
+
+    /* CONTACT */
+    .contact-wrap{ max-width:720px; margin:14px auto 0; }
+    form.contact-form{ display:grid; gap:10px; }
+    .input, textarea{
+      width:100%;
+      padding:10px 12px;
+      border-radius:8px;
+      border:1px solid rgba(30,30,60,0.06);
+      font-size:14px;
+    }
+    textarea{ min-height:120px; resize:vertical; }
+    .form-row{ display:flex; gap:10px; }
+    .small{ flex:1; }
+
+    /* FOOTER */
+    footer.site-footer{
+      margin-top:28px;
+      padding:24px 0;
+      text-align:center;
+      color:#fff;
+      background:var(--muted);
+      font-size:14px;
+    }
+
+    /* Responsive */
+    @media (max-width:800px){
+      .nav-inner{ height:64px; padding:0 10px; }
+      .hero h1{ font-size:1.5rem; }
+      .hero-logo{ width:140px; height:140px; font-size:18px; }
+      .why-grid{ grid-template-columns:1fr; }
+      .brand h1{ font-size:16px }
+      .brand .tag{ display:none }
+      .nav-inner{ gap:8px }
+      nav.main-nav{ display:none } /* keep header clean on small screens */
+      .nav-row{ display:flex; gap:10px; align-items:center }
+      .mobile-nav{
+        display:flex;
+        gap:8px;
+        align-items:center;
+      }
+    }
+  </style>
 </head>
 <body>
 
-    <!-- ✅ Navbar (Updated Text) -->
-    <header>
-        <div class="logo">
-            <img src="logo.png" alt="Reflectory Logo">
-            <h1>Reflectory</h1>
-            <span>Clarity • Discipline • Growth</span>
+  <!-- HEADER / NAV -->
+  <header class="site-header">
+    <div class="container nav-inner">
+      <div class="brand">
+        <!-- Logo placeholder (replace with real image later) -->
+        <div class="logo-placeholder" aria-hidden="true">R</div>
+        <div>
+          <h1 style="margin:0;font-size:16px;">Reflectory</h1>
+          <div class="tag" style="margin-top:6px;color:#6b6b88;font-size:12px;">Clarity • Discipline • Growth</div>
         </div>
-        <nav>
-            <a onclick="showPage('home')">Home</a>
-            <a onclick="showPage('about')">About</a>
-            <a onclick="showPage('services')">Programs</a>
-            <a onclick="showPage('contact')">Contact</a>
-        </nav>
-        <button onclick="window.open('https://forms.gle/5GCDs55aMftZUmt18', '_blank')" style="background-color:#fff; color:#1E3A8A; border:none; padding:10px 20px; border-radius:5px; font-weight:bold; cursor:pointer;">
-            Start Your Journey
-        </button>
-    </header>
+      </div>
 
-    <!-- ✅ Hero Section -->
-    <section id="home" class="hero active">
-        <img src="logo-big.png" alt="Reflectory Logo">
-        <h2>Reflectory – Guiding Students Towards Clarity & Discipline</h2>
-        <p>Personal mentorship to help you build routine, confidence, and a better future.</p>
-        <div class="button-group">
-            <button onclick="window.open('https://forms.gle/5GCDs55aMftZUmt18', '_blank')">Start Your Journey</button>
-            <button onclick="showPage('about')">How It Works</button>
+      <!-- desktop nav -->
+      <nav class="main-nav" aria-label="Main navigation">
+        <a href="#home">Home</a>
+        <a href="#about">About</a>
+        <a href="#programs">Programs</a>
+        <a href="#contact">Contact</a>
+      </nav>
+
+      <!-- CTA -->
+      <div class="nav-row">
+        <a class="cta-btn" href="#contact">Start Your Journey</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <main id="home" class="hero" role="main">
+    <div class="hero-inner container">
+      <!-- logo placeholder -->
+      <div class="hero-logo" role="img" aria-label="Reflectory Logo">
+        R
+      </div>
+
+      <h1>Guiding Students, Building Futures</h1>
+      <p class="lead">A supportive space for confused students to find clarity, discipline, and direction.</p>
+
+      <div class="actions">
+        <a class="cta-btn" href="#contact">Start Your Journey</a>
+        <button class="btn-outline" onclick="document.getElementById('about').scrollIntoView({behavior:'smooth'})">How It Works</button>
+      </div>
+    </div>
+  </main>
+
+  <!-- ABOUT -->
+  <section id="about" class="content">
+    <div class="section-card container">
+      <h2 class="section-title">About Reflectory</h2>
+      <p class="lead-muted">A focused, student-first approach to mentorship that combines practical planning with emotional understanding.</p>
+
+      <div class="about-wrap">
+        <p>
+          Reflectory is a student-focused mentorship initiative designed to help individuals gain clarity in academics, discipline, mindset, and career choices. We believe every student deserves personal guidance, emotional understanding, and a structured path forward.
+        </p>
+
+        <p class="mission">Our mission is to empower students with clarity, discipline, and emotional support—so they can build a life they’re proud of.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROGRAMS -->
+  <section id="programs" class="content" aria-labelledby="programs">
+    <div class="section-card container">
+      <h2 class="section-title">Programs</h2>
+      <p class="lead-muted">Practical, clear, and focused programs to support progress.</p>
+
+      <div class="grid" role="list">
+        <div class="card" role="listitem">
+          <h3>Personal Mentorship</h3>
+          <p>One-on-one mentoring focused on identifying strengths, setting goals, and building consistent progress.</p>
         </div>
-    </section>
 
-    <!-- ✅ About Section -->
-    <section id="about">
-        <h2>About Reflectory</h2>
-        <p>Reflectory is a personal growth and mentorship initiative created to help students gain clarity, discipline, and direction in life.</p>
-        <p>We focus on improving habits, mindset, and decision-making using structured planning, personal guidance, and emotional support.</p>
-    </section>
+        <div class="card" role="listitem">
+          <h3>Discipline & Routine Planning</h3>
+          <p>Structured daily and weekly routines designed to build habits, manage time, and improve focus.</p>
+        </div>
 
-    <!-- ✅ Programs Section -->
-    <section id="services">
-        <h2>Programs</h2>
-        <p>✔ Personal Mentorship & Accountability<br>
-           ✔ Mindset & Discipline Coaching<br>
-           ✔ Habit & Productivity Systems<br>
-           ✔ Career & Self-Awareness Guidance</p>
-    </section>
+        <div class="card" role="listitem">
+          <h3>Career & Skill Development Guidance</h3>
+          <p>Practical guidance on skills, courses, and career paths that match the student's strengths and goals.</p>
+        </div>
+      </div>
+    </div>
+  </section>
 
-    <!-- ✅ Contact Section -->
-    <section id="contact">
-        <h2>Contact</h2>
-        <p>Email: karanrajput832006@gmail.com<br>
-           Instagram: @reflectory<br>
-           Location: Palanpur, Gujarat</p>
-    </section>
+  <!-- WHY Reflectory Works (Logic + Emotion) -->
+  <section id="why" class="content">
+    <div class="section-card container">
+      <h2 class="section-title">Why Reflectory Works</h2>
+      <p class="lead-muted">A mix of practical steps + emotional support helps students not just plan, but act.</p>
 
-    <!-- ✅ Footer -->
-    <footer>
-        <p>© 2025 Reflectory. All Rights Reserved.</p>
-    </footer>
+      <div class="why-grid">
+        <div class="why-text">
+          <h3 style="color:var(--muted); margin-top:0;">Clear Logic</h3>
+          <p class="why-text">We break long-term goals into small, achievable steps: routines, weekly reviews, and measurable milestones. This makes progress visible and sustainable.</p>
+          <ul style="color:#333">
+            <li>Simple, measurable routines</li>
+            <li>Weekly check-ins and adjustments</li>
+            <li>Personalized skill-building focus</li>
+          </ul>
+        </div>
 
-    <script>
-        function showPage(pageId) {
-            document.querySelectorAll('section').forEach(sec => sec.classList.remove('active'));
-            document.getElementById(pageId).classList.add('active');
-        }
-    </script>
+        <div class="why-emo">
+          <h3 style="margin-top:0;color:var(--muted);">Emotional Support</h3>
+          <p>Students are guided with empathy — no pressure, no drama. We focus on small wins, reducing overthinking, and building confidence through responsibility and clarity.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT / JOIN -->
+  <section id="contact" class="content">
+    <div class="section-card container">
+      <h2 class="section-title">Connect With Reflectory</h2>
+      <p class="lead-muted">Have questions or want to start your journey? Send a message below.</p>
+
+      <div class="contact-wrap">
+        <form id="contactForm" class="contact-form" onsubmit="return handleForm(event)">
+          <div class="form-row">
+            <input class="input small" id="name" name="name" type="text" placeholder="Full name" required>
+            <input class="input small" id="email" name="email" type="email" placeholder="Email address" required>
+          </div>
+          <textarea id="message" name="message" placeholder="Tell us briefly what you need..." required></textarea>
+
+          <div style="display:flex;gap:12px;align-items:center;">
+            <button type="submit" class="cta-btn">Start Your Journey</button>
+            <button type="button" class="btn-outline" onclick="resetForm()">Reset</button>
+          </div>
+
+          <p id="formStatus" style="margin-top:10px;color:#3a3a62;font-size:0.95rem;display:none;"></p>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="container">
+      © 2025 Reflectory. Mentorship by Karan Rajput.
+    </div>
+  </footer>
+
+  <script>
+    // Simple client-side form handler: opens mail client with prefilled message (basic, safe)
+    function handleForm(e){
+      e.preventDefault();
+      const name = document.getElementById('name').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const message = document.getElementById('message').value.trim();
+
+      if(!name || !email || !message){
+        showStatus('Please fill all fields.', true);
+        return false;
+      }
+
+      // Prepare mailto (fallback - user can change later to direct API)
+      const to = 'karanrajput832006@gmail.com';
+      const subject = encodeURIComponent('New Reflectory enquiry from ' + name);
+      const bodyLines = [
+        'Name: ' + name,
+        'Email: ' + email,
+        '',
+        'Message:',
+        message
+      ];
+      const body = encodeURIComponent(bodyLines.join('\n'));
+
+      // Open user's mail client with prefilled email
+      window.location.href = `mailto:${to}?subject=${subject}&body=${body}`;
+
+      showStatus('Opening your email client to send the message...', false);
+
+      return false;
+    }
+
+    function showStatus(text, isError){
+      const el = document.getElementById('formStatus');
+      el.style.display = 'block';
+      el.style.color = isError ? '#b00020' : '#2b2b60';
+      el.textContent = text;
+      setTimeout(()=>{ el.style.display='none'; }, 6000);
+    }
+
+    function resetForm(){
+      document.getElementById('contactForm').reset();
+      showStatus('Form reset.', false);
+    }
+
+    // Accessibility: allow keyboard focus scroll to sections if nav hidden on mobile
+    document.querySelectorAll('nav.main-nav a').forEach(a=>{
+      a.addEventListener('click', ()=> {
+        // close mobile nav if implemented later
+      });
+    });
+  </script>
 </body>
 </html>
