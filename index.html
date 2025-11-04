@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Reflectory - Guiding Students</title>
+    <title>Reflectory – Guiding Students to Clarity and Confidence</title>
 
     <style>
         body {
@@ -21,10 +21,6 @@
             align-items: center;
             justify-content: space-between;
             padding: 10px 20px;
-        }
-        .logo {
-            display: flex;
-            align-items: center;
         }
         .logo img {
             height: 45px;
@@ -52,31 +48,40 @@
         section.active {
             display: block;
         }
-        h2 {
-            text-align: center;
-            color: #1E3A8A;
-        }
 
         /* Hero Section */
         .hero {
             text-align: center;
-            padding: 70px 20px;
+            padding: 80px 20px;
             background-color: #EEF2FF;
         }
         .hero img {
-            width: 250px;
+            width: 240px;
             margin-bottom: 20px;
         }
-        .hero button {
+        .hero h2 {
+            font-size: 2rem;
+            color: #1E3A8A;
+            margin-bottom: 10px;
+        }
+        .hero p {
+            font-size: 1rem;
+            margin-bottom: 20px;
+        }
+        .button-group {
+            margin-top: 20px;
+        }
+        .button-group button {
             background-color: #1E3A8A;
             color: white;
             border: none;
+            margin: 5px;
             padding: 12px 30px;
             cursor: pointer;
             border-radius: 5px;
+            font-size: 1rem;
         }
 
-        /* Footer */
         footer {
             background-color: #1E3A8A;
             color: white;
@@ -101,28 +106,31 @@
         </nav>
     </header>
 
-    <!-- Home Section -->
+    <!-- ✅ Home Section -->
     <section id="home" class="hero active">
-        <img src="logo-big.png" alt="Reflectory Main Logo">
-        <h2>Your Career, Your Choice, Our Guidance</h2>
-        <p>Helping confused students choose the right path in life and career through AI + Mentorship.</p>
-        <!-- ✅ Button opens Google Form -->
-        <button onclick="window.open('https://forms.gle/5GCDs55aMftZUmt18', '_blank')">Get Started</button>
+        <img src="logo-big.png" alt="Reflectory Logo">
+        <h2>Reflectory – Guiding Students to Clarity and Confidence</h2>
+        <p>“Helping confused students build clarity, confidence, and direction — not just through advice, but through personal mentorship, structure, and responsibility.”</p>
+        <p><b>Reflectory</b> is a student-focused initiative designed to support your journey in academics, discipline, self-awareness, and personal growth — step by step, without pressure.</p>
+        <div class="button-group">
+            <button onclick="window.open('https://forms.gle/5GCDs55aMftZUmt18', '_blank')">Get Started</button>
+            <button onclick="showPage('about')">How It Works</button>
+        </div>
     </section>
 
     <!-- About Section -->
     <section id="about">
-        <h2>About Us</h2>
-        <p>Reflectory is a mentorship platform designed to help confused students make the right academic and career choices using AI and human guidance.</p>
+        <h2>How It Works</h2>
+        <p>At Reflectory, we offer structured mentorship to help students gain clarity in academics, mindset, habits, and career direction — using a blend of AI assistance and human guidance.</p>
     </section>
 
     <!-- Services Section -->
     <section id="services">
-        <h2>Our Services</h2>
-        <p>✔ Personalized Career Mentorship<br>
-           ✔ AI Career Guidance Tools<br>
-           ✔ College & Course Selection Support<br>
-           ✔ Skill Development Roadmaps</p>
+        <h2>What We Offer</h2>
+        <p>✔ Personal Mentorship & Accountability<br>
+           ✔ Mindset & Discipline Building<br>
+           ✔ Habit Systems & Productivity Planning<br>
+           ✔ Career & Self-Awareness Guidance</p>
     </section>
 
     <!-- Contact Section -->
@@ -138,14 +146,11 @@
         <p>© 2025 Reflectory. All Rights Reserved.</p>
     </footer>
 
-    <!-- JavaScript -->
     <script>
         function showPage(pageId) {
-            const sections = document.querySelectorAll('section');
-            sections.forEach(sec => sec.classList.remove('active'));
+            document.querySelectorAll('section').forEach(sec => sec.classList.remove('active'));
             document.getElementById(pageId).classList.add('active');
         }
     </script>
-
 </body>
 </html>
