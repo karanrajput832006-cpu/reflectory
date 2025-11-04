@@ -22,14 +22,26 @@
             justify-content: space-between;
             padding: 10px 20px;
         }
+        .logo {
+            display: flex;
+            flex-direction: column;
+            line-height: 1;
+        }
         .logo img {
             height: 45px;
             width: auto;
-            margin-right: 10px;
+        }
+        .logo h1 {
+            margin: 5px 0 0;
+            font-size: 1.2rem;
+        }
+        .logo span {
+            font-size: 0.8rem;
+            opacity: 0.8;
         }
         nav a {
             color: white;
-            margin: 0 15px;
+            margin: 0 12px;
             text-decoration: none;
             font-weight: bold;
             cursor: pointer;
@@ -92,17 +104,18 @@
 </head>
 <body>
 
-    <!-- Navbar -->
+    <!-- ✅ Navbar -->
     <header>
         <div class="logo">
             <img src="logo.png" alt="Reflectory Logo">
             <h1>Reflectory</h1>
+            <span>Clarity • Discipline • Growth</span> <!-- Optional tagline -->
         </div>
         <nav>
             <a onclick="showPage('home')">Home</a>
-            <a onclick="showPage('about')">About</a>
-            <a onclick="showPage('services')">Services</a>
-            <a onclick="showPage('contact')">Contact</a>
+            <a onclick="showPage('about')">About Reflectory</a>
+            <a onclick="showPage('services')">Programs & Mentorship</a>
+            <a onclick="showPage('contact')">Contact / Join</a>
         </nav>
     </header>
 
@@ -118,24 +131,24 @@
         </div>
     </section>
 
-    <!-- About Section -->
+    <!-- ✅ About Section -->
     <section id="about">
-        <h2>How It Works</h2>
-        <p>At Reflectory, we offer structured mentorship to help students gain clarity in academics, mindset, habits, and career direction — using a blend of AI assistance and human guidance.</p>
+        <h2>About Reflectory</h2>
+        <p>Reflectory provides structured mentorship to help students gain clarity in academics, discipline, habits, and career direction — using a blend of personal guidance and AI tools.</p>
     </section>
 
-    <!-- Services Section -->
+    <!-- ✅ Services Section -->
     <section id="services">
-        <h2>What We Offer</h2>
+        <h2>Programs & Mentorship</h2>
         <p>✔ Personal Mentorship & Accountability<br>
-           ✔ Mindset & Discipline Building<br>
-           ✔ Habit Systems & Productivity Planning<br>
+           ✔ Mindset & Discipline Coaching<br>
+           ✔ Habit & Productivity Systems<br>
            ✔ Career & Self-Awareness Guidance</p>
     </section>
 
-    <!-- Contact Section -->
+    <!-- ✅ Contact Section -->
     <section id="contact">
-        <h2>Contact Us</h2>
+        <h2>Contact / Join</h2>
         <p>Email: reflectory.support@gmail.com<br>
            Instagram: @reflectory<br>
            Location: Palanpur, Gujarat</p>
