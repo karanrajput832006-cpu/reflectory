@@ -319,7 +319,7 @@
         </div>
 
         <!-- CTA: updated Google Form link -->
-        <a class="nav-cta" href="https://forms.gle/ARY3Mkq1MdGAWVav5" target="_blank" rel="noopener" id="navCTA">Get Started</a>
+        <a class="nav-cta" href="https://forms.gle/GNxi8DNrr3XAo3ZFA" target="_blank" rel="noopener" id="navCTA">Get Started</a>
 
         <!-- Hamburger for mobile -->
         <button class="hamburger" id="hamburger" aria-expanded="false" aria-label="Open menu">
@@ -338,14 +338,13 @@
           <a href="#join" data-target="join" class="mobile-link" role="menuitem">Join Us</a>
           <a href="#contact" data-target="contact" class="mobile-link" role="menuitem">Contact</a>
           <div style="height:8px"></div>
-          <a href="https://forms.gle/ARY3Mkq1MdGAWVav5" target="_blank" rel="noopener" class="mobile-link" role="menuitem" style="font-weight:700;color:var(--accent);">Get Started</a>
+          <a href="https://forms.gle/GNxi8DNrr3XAo3ZFA" target="_blank" rel="noopener" class="mobile-link" role="menuitem" style="font-weight:700;color:var(--accent);">Get Started</a>
         </div>
       </nav>
     </div>
   </header>
 
   <main id="main" class="site" tabindex="-1">
-    <!-- Home Section -->
     <!-- Home Section -->
     <section id="homeSection" class="page show" aria-labelledby="homeHeading">
       <div class="hero">
@@ -360,7 +359,7 @@
 
           <div class="cta-row">
             <!-- Updated Google Form link -->
-            <a class="btn" href="https://forms.gle/ARY3Mkq1MdGAWVav5" target="_blank" rel="noopener" aria-label="Get started with Reflectory Google Form">
+            <a class="btn" href="https://forms.gle/GNxi8DNrr3XAo3ZFA" target="_blank" rel="noopener" aria-label="Get started with Reflectory Google Form">
               Get Started
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" style="opacity:0.9">
                 <path d="M5 12h14" stroke="white" stroke-width="2" stroke-linecap="round"/>
@@ -385,7 +384,6 @@
     </section>
 
     <!-- About Reflectory Section -->
-    <!-- About Section -->
     <section id="aboutSection" class="page" aria-labelledby="aboutHeading">
       <div class="section-title"><strong>About Reflectory</strong></div>
       <div class="rule"></div>
@@ -432,7 +430,6 @@
     </section>
 
     <!-- Programs Section -->
-    <!-- Programs Section -->
     <section id="programsSection" class="page" aria-labelledby="programsHeading">
       <div class="section-title"><strong>Programs</strong></div>
       <div class="rule"></div>
@@ -468,7 +465,6 @@
     </section>
 
     <!-- Join Us / Become a Member Section -->
-    <!-- Join Section -->
     <section id="joinSection" class="page" aria-labelledby="joinHeading">
       <div class="section-title"><strong>Join Reflectory</strong></div>
       <div class="rule"></div>
@@ -484,7 +480,7 @@
           <div style="height:12px"></div>
           <p class="small">To apply, click the button below and fill the membership application form.</p>
           <div style="height:10px"></div>
-          <a class="btn" href="https://forms.gle/ARY3Mkq1MdGAWVav5" target="_blank" rel="noopener">Apply Now</a>
+          <a class="btn" href="https://forms.gle/GNxi8DNrr3XAo3ZFA" target="_blank" rel="noopener">Apply Now</a>
         </div>
 
         <div style="flex:1; min-width:280px;">
@@ -530,7 +526,6 @@
     </section>
 
     <!-- Contact Us Section -->
-    <!-- Contact Section -->
     <section id="contactSection" class="page" aria-labelledby="contactHeading">
       <div class="section-title"><strong>Contact Us</strong></div>
       <div class="rule"></div>
@@ -623,7 +618,7 @@
         <div style="border-top:1px solid rgba(15,23,42,0.04); padding-top:12px;">
           <div class="small muted" style="margin-bottom:6px; font-weight:700;">Terms &amp; Conditions (short)</div>
           <div class="small muted" style="line-height:1.4;">
-            Reflectory provides mentorship and educational guidance. This is not therapy or professional financial/legal advice. We do not guarantee specific results. Participants under 18 must have parent/guardian consent. By using our services, you agree to these terms.
+            Reflectory provides mentorship and educational guidance. This is not therapy or professional financial/legal advice. We do not guarantee specific results. Participants under 18 must have a parent/guardian consent. By using our services you agree to these terms.
           </div>
 
           <!-- Additional required legal bullets (minimal) -->
@@ -805,10 +800,8 @@
         if (e.key === 'Escape') toggleMobileMenu(false);
       });
 
-      // Remove query string or replaceable links handling:
-      // (Developer note visible in code: update URLs 'REPLACE_WITH_YOUR_FORM' with your actual Google Form link)
+      // Developer note: highlight navCTA if left as placeholder (not needed here)
       if (navCTA && navCTA.href.includes('REPLACE_WITH_YOUR_FORM')) {
-        // highlight navCTA visually by small pulse (non-intrusive)
         navCTA.style.boxShadow = '0 10px 30px rgba(91,140,255,0.18)';
       }
     })();
