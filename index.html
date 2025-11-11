@@ -1,4 +1,3 @@
-
 <!doctype html>
 <html lang="en">
 <head>
@@ -537,7 +536,7 @@
           <p class="muted">Email us for queries, program info, or partnership opportunities.</p>
 
           <p style="margin-top:12px;">
-            <strong>Email:</strong> <a href="mailto:hello@reflectory.org">hello@reflectory.org</a><br/>
+            <strong>Email:</strong> <a href="mailto:reflectory.in@gmail.com">reflectory.in@gmail.com</a><br/>
             <strong>Instagram:</strong> <a href="https://instagram.com" target="_blank" rel="noopener">@reflectory (replace link)</a><br/>
             <strong>Location:</strong> Palanpur, Gujarat, India
           </p>
@@ -570,7 +569,7 @@
             </form>
 
             <div id="contactFeedback" class="small" style="display:none; margin-top:12px;"></div>
-            <div style="margin-top:10px" class="small muted">Or email directly at <a href="mailto:hello@reflectory.org">hello@reflectory.org</a></div>
+            <div style="margin-top:10px" class="small muted">Or email directly at <a href="mailto:reflectory.in@gmail.com">reflectory.in@gmail.com</a></div>
           </div>
         </div>
       </div>
@@ -597,7 +596,7 @@
 
             <div>
               <div class="small" style="font-weight:700">Connect</div>
-              <a href="mailto:hello@reflectory.org">Email</a>
+              <a href="mailto:reflectory.in@gmail.com">Email</a>
               <a href="https://instagram.com" target="_blank" rel="noopener">Instagram</a>
             </div>
           </div>
@@ -631,17 +630,7 @@
           </div>
         </div>
       </div>
-    
-  <div class="small muted" style="margin-top:16px; line-height:1.6; border-top:1px solid rgba(15,23,42,0.04); padding-top:12px;">
-    <strong>AI Usage Disclaimer:</strong><br/>
-    Reflectory uses artificial intelligence (AI) tools such as OpenAI’s ChatGPT to assist in generating insights, schedules, and mentoring suggestions for clients.<br/>
-    All AI-generated content is reviewed, refined, and verified by the mentor before being shared with clients.<br/>
-    AI models may occasionally produce incomplete or inaccurate information. Reflectory and its mentor do not claim absolute accuracy of AI-generated responses.<br/>
-    Clients are encouraged to use all insights as guidance, not as guaranteed outcomes.<br/>
-    Reflectory remains fully human-supervised, with all mentoring decisions personally handled by <strong>Karan Rajput</strong>.
-  </div>
-
-</footer>
+    </footer>
 
   </main>
 
@@ -764,12 +753,12 @@
         // Open user's mail client with prefilled content (fallback)
         const subject = encodeURIComponent('Reflectory - Quick join request from ' + name);
         const body = encodeURIComponent('Name: ' + name + '\nEmail: ' + email + '\nRole: ' + role + '\n\nMessage:\n' + msg);
-        window.location.href = 'mailto:hello@reflectory.org?subject=' + subject + '&body=' + body;
+        window.location.href = 'mailto:reflectory.in@gmail.com' + subject + '&body=' + body;
 
         const fb = document.getElementById('quickJoinFeedback');
         fb.style.display='block';
         fb.style.color = 'green';
-        fb.textContent = 'Opening your email client to send the application. If nothing opens, please email hello@reflectory.org directly.';
+        fb.textContent = 'Opening your email client to send the application. If nothing opens, please email reflectory.in@gmail.com directly.';
         this.reset();
       });
 
@@ -790,11 +779,11 @@
         // Use mailto to open user's email client with content
         const subject = encodeURIComponent('Reflectory - Contact from ' + name);
         const body = encodeURIComponent('Name: ' + name + '\nEmail: ' + email + '\n\nMessage:\n' + message);
-        window.location.href = 'mailto:hello@reflectory.org?subject=' + subject + '&body=' + body;
+        window.location.href = 'mailto:reflectory.in@gmail.com' + subject + '&body=' + body;
 
         const fb = document.getElementById('contactFeedback');
         fb.style.display='block'; fb.style.color='green';
-        fb.textContent = 'Opening your email client to send the message. If nothing opens, email hello@reflectory.org.';
+        fb.textContent = 'Opening your email client to send the message. If nothing opens, email reflectory.in@gmail.com.';
         this.reset();
       });
 
