@@ -5,245 +5,544 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Reflectory — Mentorship & AI-assisted Guidance</title>
   <meta name="description" content="Reflectory: Student-first mentorship for career clarity, habits, and AI-assisted planning." />
+  <meta name="theme-color" content="#0b1020"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Poppins:wght@500;700&display=swap" rel="stylesheet">
   <style>
+    /* Gen-Z vibrant theme: bold gradients, glassy cards, playful accents */
     :root{
-      --bg:#071326;--card:#0b1220;--accent:#6c7cff;--muted:#9aa4c0;--glass: rgba(255,255,255,0.03);--radius:12px;--max-width:1000px;
+      --bg-1: #0b1020;
+      --bg-2: #081025;
+      --card: rgba(255,255,255,0.04);
+      --glass: rgba(255,255,255,0.03);
+      --muted: #b9c2d9;
+      --accent-1: #7b61ff;   /* neon purple */
+      --accent-2: #00f0c6;   /* aqua mint */
+      --accent-3: #ff6bcb;   /* pink */
+      --accent-grad: linear-gradient(135deg,var(--accent-1),#9be7ff 50%,var(--accent-3));
+      --radius: 16px;
+      --max-w: 1100px;
     }
     *{box-sizing:border-box}
     html,body{height:100%}
-    body{margin:0;font-family:Inter,system-ui,Roboto,Arial,sans-serif;background:linear-gradient(180deg,#071028 0%, #071326 100%);color:#e6eef8}
-    .container{max-width:var(--max-width);margin:0 auto;padding:20px}
-    header{position:sticky;top:0;background:rgba(255,255,255,0.01);border-bottom:1px solid rgba(255,255,255,0.03);z-index:40}
-    header .bar{display:flex;gap:16px;align-items:center;padding:14px}
-    .brand{color:var(--accent);font-weight:700;font-size:1.15rem;text-decoration:none}
-    nav{margin-left:auto;display:flex;gap:10px}
-    nav a{color:var(--muted);text-decoration:none;padding:8px;border-radius:8px}
-    nav a:hover{color:#fff;background:rgba(255,255,255,0.02)}
-    main{padding:18px}
-    .panel{margin:22px 0;padding:18px;border-radius:var(--radius);background:linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.00));}
-    .card{background:var(--card);padding:14px;border-radius:10px;border:1px solid rgba(255,255,255,0.03)}
-    .form-row{margin-bottom:12px;display:flex;flex-direction:column}
-    input,textarea,select{background:var(--glass);border:1px solid rgba(255,255,255,0.03);color:#eaf1ff;padding:9px;border-radius:8px}
-    .primary{background:linear-gradient(90deg,var(--accent),#8fb0ff);color:#07102a;padding:10px 14px;border-radius:10px;border:none;cursor:pointer;text-decoration:none;display:inline-block}
-    .ghost{background:transparent;color:var(--accent);padding:10px 12px;border-radius:10px;text-decoration:none;border:1px solid rgba(255,255,255,0.04);cursor:pointer;display:inline-block}
-    .small{font-size:0.85rem;color:var(--muted)}
-    .notice{background:rgba(255,255,255,0.02);padding:10px;border-radius:8px;color:var(--muted)}
-    footer{padding:12px 0;border-top:1px solid rgba(255,255,255,0.02);color:var(--muted)}
-    @media (max-width:720px){nav{display:none}}
+    body{
+      margin:0;
+      font-family:Inter, Poppins, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+      background:
+        radial-gradient(800px 400px at 10% 10%, rgba(123,97,255,0.08), transparent 8%),
+        radial-gradient(700px 300px at 90% 90%, rgba(0,240,198,0.03), transparent 12%),
+        linear-gradient(180deg,var(--bg-1) 0%, var(--bg-2) 100%);
+      color:#edf4ff;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    /* Layout */
+    .wrap{max-width:var(--max-w);margin:0 auto;padding:20px}
+    header.site-header{
+      position:sticky;top:12px;z-index:60;margin:0 auto;padding:12px 20px;background:transparent;backdrop-filter: blur(6px);
+    }
+    .nav-row{display:flex;align-items:center;gap:12px}
+    .brand{display:flex;align-items:center;gap:10px;text-decoration:none;color:transparent;background:linear-gradient(90deg,#fff,#fff);-webkit-background-clip:text}
+    .logo {
+      width:40px;height:40px;border-radius:10px;
+      background: conic-gradient(from 200deg at 50% 50%, var(--accent-3), var(--accent-1), var(--accent-2));
+      box-shadow:0 6px 30px rgba(10,12,20,0.6), inset 0 -6px 20px rgba(0,0,0,0.18);
+      display:inline-block;
+    }
+    .brand-name{font-weight:800;font-family:Poppins,Inter;font-size:1.05rem;color:linear-gradient(90deg,#fff,#fff)}
+    nav.main-nav{margin-left:auto;display:flex;gap:8px;align-items:center}
+    nav.main-nav a{padding:8px 12px;border-radius:12px;color:var(--muted);text-decoration:none;font-weight:600}
+    nav.main-nav a:hover{background:rgba(255,255,255,0.02);color:#fff}
+
+    /* Mobile hamburger */
+    .hamburger{display:none;background:transparent;border:0;color:var(--muted);cursor:pointer;padding:8px;border-radius:10px}
+    .mobile-menu{display:none;position:absolute;right:20px;top:76px;background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));border-radius:12px;padding:12px;box-shadow:0 12px 30px rgba(5,6,12,0.6)}
+
+    /* Hero / Pages */
+    .page{display:none;padding:28px 0}
+    .page.active{display:block}
+
+    .hero{
+      display:flex;gap:24px;align-items:center;justify-content:space-between;
+      background:linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.00));
+      border-radius:18px;padding:26px;
+      box-shadow: 0 12px 30px rgba(2,6,20,0.6);
+    }
+    .hero-left{max-width:62%}
+    .kicker{display:inline-block;padding:6px 10px;border-radius:999px;background:linear-gradient(90deg, rgba(123,97,255,0.12), rgba(0,240,198,0.06));color:var(--accent-2);font-weight:700;font-size:0.85rem}
+    h1{margin:10px 0;font-size:2.2rem;line-height:1.02;letter-spacing:-0.5px}
+    p.lead{color:var(--muted);font-size:1.02rem;max-width:60ch}
+    .hero-cta{display:flex;gap:12px;margin-top:18px}
+    .btn-primary{
+      background:var(--accent-grad);color:#061024;padding:12px 16px;border-radius:12px;font-weight:800;text-decoration:none;border:none;cursor:pointer;box-shadow:0 8px 30px rgba(123,97,255,0.12)
+    }
+    .btn-ghost{background:transparent;border:1px solid rgba(255,255,255,0.06);color:var(--accent-2);padding:10px 14px;border-radius:12px;text-decoration:none}
+
+    .hero-art{width:42%;display:flex;justify-content:flex-end}
+    .art-card{
+      width:320px;height:220px;border-radius:20px;background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.00));
+      box-shadow:0 12px 40px rgba(10,10,20,0.6);display:flex;align-items:center;justify-content:center;flex-direction:column;padding:18px
+    }
+    .art-emoji{font-size:48px;margin-bottom:8px}
+    .art-title{font-weight:700;color:#fff;font-size:1rem}
+
+    /* Cards grid */
+    .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:18px}
+    .card{background:var(--card);padding:16px;border-radius:14px;border:1px solid rgba(255,255,255,0.02)}
+    .card h3{margin:6px 0;color:#fff}
+    .card p{color:var(--muted);font-size:0.95rem}
+
+    /* Forms */
+    form .row{display:flex;flex-direction:column;margin-bottom:12px}
+    label{font-weight:600;color:var(--muted);font-size:0.9rem;margin-bottom:6px}
+    input, select, textarea{
+      background:var(--glass);border:1px solid rgba(255,255,255,0.04);color:#eaf1ff;padding:12px;border-radius:10px;outline:none;font-size:1rem
+    }
+    input:focus{box-shadow:0 8px 30px rgba(123,97,255,0.06);border-color:rgba(123,97,255,0.6)}
+    .small{font-size:0.86rem;color:var(--muted)}
+
+    /* Footer */
+    footer{margin-top:30px;padding:20px;border-radius:12px;background:linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.00));display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap}
+    .footer-left{color:var(--muted)}
+    .social{display:flex;gap:8px;align-items:center}
+
+    /* Renew Card */
+    .renew-card{display:flex;flex-direction:column;gap:12px}
+    .renew-actions{display:flex;gap:12px;align-items:center}
+
+    /* Notifications */
+    .toast{position:fixed;right:18px;bottom:18px;background:linear-gradient(90deg, rgba(123,97,255,0.14), rgba(0,240,198,0.06));padding:12px 16px;border-radius:12px;color:#061024;font-weight:700;box-shadow:0 12px 30px rgba(3,6,12,0.6);display:none}
+
+    /* Responsive */
+    @media (max-width:980px){
+      .grid{grid-template-columns:repeat(2,1fr)}
+      .hero-left{max-width:60%}
+      .hero-art{display:none}
+    }
+    @media (max-width:700px){
+      .grid{grid-template-columns:1fr}
+      .hero{flex-direction:column;gap:14px}
+      .hero-left{max-width:100%}
+      .brand-name{display:none}
+      .hamburger{display:inline-block}
+      nav.main-nav{display:none}
+      .mobile-menu{display:block}
+      header.site-header{position:relative}
+    }
+
+    /* Micro interactions */
+    .btn-primary:hover{transform:translateY(-3px);transition:transform .18s ease}
+    .link-underline{position:relative}
+    .link-underline::after{content:'';position:absolute;left:0;bottom:-4px;height:2px;width:0;background:var(--accent-2);transition:width .24s}
+    .link-underline:hover::after{width:100%}
   </style>
 </head>
 <body>
-  <header>
-    <div class="bar container">
-      <a class="brand" href="#home">Reflectory</a>
-      <nav>
-        <a href="#home">Home</a>
-        <a href="#about">About</a>
-        <a href="#programs">Programs</a>
-        <a href="#join">Join</a>
-        <a href="#renew">Renew</a>
-        <a href="#contact">Contact</a>
-      </nav>
-    </div>
-  </header>
+  <div class="wrap">
+    <header class="site-header">
+      <div class="nav-row">
+        <a class="brand" href="/" data-link>
+          <span class="logo" aria-hidden></span>
+          <span class="brand-name">Reflectory</span>
+        </a>
 
-  <main class="container">
-    <section id="home" class="panel">
-      <h1>Reflectory</h1>
-      <p class="small">Mentorship • Education • Guidance • Learning • AI-Assisted</p>
-      <p class="small">A future where every student makes career and life decisions confidently and ethically.</p>
-      <a class="primary" href="#join">Get Started</a>
-    </section>
+        <nav class="main-nav" aria-label="Main navigation">
+          <a href="/" data-link>Home</a>
+          <a href="/about" data-link>About</a>
+          <a href="/programs" data-link>Programs</a>
+          <a href="/join" data-link>Join</a>
+          <a href="/renew" data-link>Renew</a>
+          <a href="/contact" data-link>Contact</a>
+          <a href="/legal" data-link>Legal</a>
+        </nav>
 
-    <section id="about" class="panel">
-      <h2>About</h2>
-      <p class="small">Student-first mentorship foundation based in Palanpur, Gujarat. We combine human mentorship with AI-assisted planning.</p>
-    </section>
-
-    <section id="programs" class="panel">
-      <h2>Programs</h2>
-      <p class="small">Structured mentorship, habit building, human-verified AI roadmaps.</p>
-    </section>
-
-    <section id="join" class="panel">
-      <h2>Join Reflectory</h2>
-      <form id="joinForm" class="card" autocomplete="off">
-        <div class="form-row"><label class="small">Name *</label><input name="name" required /></div>
-        <div class="form-row"><label class="small">Email *</label><input name="email" type="email" required /></div>
-        <div class="form-row"><label class="small">RCID (if you already have one)</label><input name="rcid" placeholder="Optional: RICD000123" /></div>
-        <div class="form-row"><label class="small">Are you under 18?</label>
-          <select name="is_minor"><option value="false">No</option><option value="true">Yes</option></select>
+        <button class="hamburger" id="hambBtn" aria-label="Open menu">☰</button>
+        <div id="mobileMenu" class="mobile-menu" style="display:none">
+          <a href="/" data-link style="display:block;padding:8px">Home</a>
+          <a href="/about" data-link style="display:block;padding:8px">About</a>
+          <a href="/programs" data-link style="display:block;padding:8px">Programs</a>
+          <a href="/join" data-link style="display:block;padding:8px">Join</a>
+          <a href="/renew" data-link style="display:block;padding:8px">Renew</a>
+          <a href="/contact" data-link style="display:block;padding:8px">Contact</a>
+          <a href="/legal" data-link style="display:block;padding:8px">Legal</a>
         </div>
-        <div class="form-row"><label class="small">Parental consent given (if minor)</label>
-          <select name="parental_consent_given"><option value="false">No</option><option value="true">Yes</option></select>
-        </div>
-
-        <div class="notice small">Consent & DPDP: By joining, you confirm you consent to Reflectory storing necessary data for mentorship. AI-assisted suggestions will be reviewed by a human mentor. For minors, parental consent must be provided.</div>
-
-        <div class="form-row"><label><input type="checkbox" name="consent" required /> I consent to data usage (DPDP compliant)</label></div>
-        <div class="form-row"><label><input type="checkbox" name="ai_ack" /> I acknowledge AI-assisted suggestions will be reviewed by a human.</label></div>
-
-        <div style="display:flex;gap:8px;margin-top:8px">
-          <button class="primary" type="submit">Submit Join Request</button>
-          <a id="openJoinGoogle" class="ghost" target="_blank" rel="noopener">Open Google Join Form</a>
-        </div>
-        <div id="joinResult" class="small" style="margin-top:8px"></div>
-        <div style="margin-top:8px"><button id="getRCID" type="button" class="ghost">Get or Create RCID for Email</button> <span id="rcidResult" class="small"></span></div>
-      </form>
-    </section>
-
-    <section id="renew" class="panel">
-      <h2>Renew Subscription (₹300 / month)</h2>
-      <ol class="small">
-        <li>Click "Pay with Razorpay" — opens in new tab.</li>
-        <li>After paying, click "Verify Payment & Renewal" — opens Google Form in new tab and submit RCID & Transaction ID / Screenshot.</li>
-        <li>Renewal is validated manually by admin.</li>
-      </ol>
-
-      <div class="card" style="margin-top:12px">
-        <div class="small"><strong>Amount:</strong> ₹300 / month</div>
-        <div style="margin-top:12px;display:flex;gap:8px;">
-          <a id="payRazor" class="primary" target="_blank" rel="noopener">Pay with Razorpay</a>
-          <a id="verifyForm" class="ghost" target="_blank" rel="noopener">Verify Payment & Renewal</a>
-        </div>
-        <div class="notice small" style="margin-top:12px">For offline/UPI payments, use admin-provided UPI details. After payment, submit the Google verification form (link above).</div>
       </div>
-    </section>
+    </header>
 
-    <section id="contact" class="panel">
-      <h2>Contact</h2>
-      <form id="contactForm" class="card" autocomplete="off">
-        <div class="form-row"><label class="small">Name *</label><input name="name" required /></div>
-        <div class="form-row"><label class="small">Email *</label><input name="email" type="email" required /></div>
-        <div class="form-row"><label class="small">Message *</label><textarea name="message" rows="4" required></textarea></div>
-        <div class="form-row"><label><input type="checkbox" name="consent" required /> I consent to Reflectory storing this message for response.</label></div>
-        <div style="margin-top:8px"><button class="primary" type="submit">Send Message</button></div>
-        <div id="contactResult" class="small" style="margin-top:8px"></div>
-      </form>
-    </section>
+    <!-- Pages (History API routing) -->
+    <main>
+      <!-- HOME -->
+      <section id="page-home" class="page">
+        <div class="hero">
+          <div class="hero-left">
+            <span class="kicker">Student-first • AI-reviewed</span>
+            <h1>Find your path. Build the habit. <span style="color:var(--accent-2)">Own your future</span> ✨</h1>
+            <p class="lead">Reflectory pairs experienced human mentors with AI-assisted roadmaps so students can make confident, ethical career choices and build discipline with compassion.</p>
 
-    <section id="legal" class="panel">
-      <h2>Legal & Policies</h2>
-      <p class="small">We follow India DPDP Act 2023. Grievance Officer: Karan Rajput — <a href="mailto:reflectory.in@gmail.com">reflectory.in@gmail.com</a>. Response window: 7 business days.</p>
-      <div class="small">Links: Privacy Policy • Terms • Parental Consent • Refund Policy</div>
-    </section>
-  </main>
+            <div class="hero-cta">
+              <a class="btn-primary" href="/join" data-link>Get Started</a>
+              <a class="btn-ghost" href="/programs" data-link>Explore Programs</a>
+            </div>
 
-  <footer class="container">
-    <div class="small">© Reflectory — Mentorship • Education • Guidance • Learning • AI-Assisted — MSME registered</div>
-    <div class="small">Instagram: <a href="https://instagram.com/reflectory.in" target="_blank" rel="noopener">reflectory.in</a></div>
-  </footer>
+            <div class="grid" style="margin-top:18px">
+              <div class="card">
+                <h3>Career Clarity</h3>
+                <p class="small">Personalized roadmaps and mentor sessions to explore options and make data-backed decisions.</p>
+              </div>
+              <div class="card">
+                <h3>Habit Building</h3>
+                <p class="small">Small wins, weekly check-ins, and growth-focused accountability.</p>
+              </div>
+              <div class="card">
+                <h3>Emotional Support</h3>
+                <p class="small">Safe, compassionate mentoring for tough days and major decisions.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="hero-art">
+            <div class="art-card">
+              <div class="art-emoji">🎯</div>
+              <div class="art-title">Goal-oriented plans</div>
+              <div class="small" style="margin-top:8px;color:var(--muted)">Human-reviewed AI roadmaps</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ABOUT -->
+      <section id="page-about" class="page">
+        <div class="card">
+          <h2>About Reflectory</h2>
+          <p class="small">Based in Palanpur, Gujarat. Registered MSME. We believe every student deserves clarity — ethically, practically, and with compassion.</p>
+          <ul class="small">
+            <li>Vision: Confident, ethical decision-making for every student</li>
+            <li>Mission: Human mentorship + AI planning for accessible guidance</li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- PROGRAMS -->
+      <section id="page-programs" class="page">
+        <div class="card">
+          <h2>Programs</h2>
+          <p class="small">We offer modular programs that combine weekly mentor sessions, habit challenges, and AI-assisted roadmaps.</p>
+          <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-top:12px">
+            <div class="card">
+              <h3>Career Starter</h3>
+              <p class="small">Exploration, aptitude mapping, and first roadmap.</p>
+            </div>
+            <div class="card">
+              <h3>Skill Builder</h3>
+              <p class="small">Hands-on practice, portfolio guidance, and discipline coaching.</p>
+            </div>
+            <div class="card">
+              <h3>Exam Prep</h3>
+              <p class="small">Study plans, weekly reviews, and emotional support for pressure.</p>
+            </div>
+            <div class="card">
+              <h3>Long-term Mentorship</h3>
+              <p class="small">6–12 month guidance for career transitions and internships.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- JOIN -->
+      <section id="page-join" class="page">
+        <div class="card">
+          <h2>Join Reflectory</h2>
+          <form id="joinForm" style="margin-top:12px">
+            <div class="row"><label>Name *</label><input name="name" required /></div>
+            <div class="row"><label>Email *</label><input name="email" type="email" required /></div>
+            <div class="row"><label>RCID (if you already have one)</label><input name="rcid" placeholder="RICD000123" /></div>
+            <div class="row"><label>Are you under 18?</label>
+              <select name="is_minor"><option value="false">No</option><option value="true">Yes</option></select>
+            </div>
+            <div class="row"><label>Parental consent (if minor)</label>
+              <select name="parental_consent_given"><option value="false">No</option><option value="true">Yes</option></select>
+            </div>
+
+            <div class="notice small" style="margin:10px 0">By joining, you consent to storing necessary data for mentorship. AI suggestions are reviewed by a human mentor. For minors, parental consent is required. See Legal for DPDP details.</div>
+
+            <div style="display:flex;gap:10px;align-items:center">
+              <label style="display:flex;gap:8px;align-items:center"><input type="checkbox" name="consent" required /> <span class="small">I consent (DPDP)</span></label>
+              <label style="display:flex;gap:8px;align-items:center"><input type="checkbox" name="ai_ack" /> <span class="small">I acknowledge AI-reviewed outputs</span></label>
+            </div>
+
+            <div style="margin-top:14px;display:flex;gap:10px">
+              <button class="btn-primary" type="submit">Submit</button>
+              <button type="button" id="btnGoogleJoin" class="btn-ghost">Open Google Join Form</button>
+              <button type="button" id="btnGetRCID" class="btn-ghost">Get/Create RCID</button>
+            </div>
+
+            <div id="joinResult" class="small" style="margin-top:12px"></div>
+          </form>
+        </div>
+      </section>
+
+      <!-- RENEW -->
+      <section id="page-renew" class="page">
+        <div class="card">
+          <h2>Renew Subscription — ₹300 / month</h2>
+          <ol class="small">
+            <li>Click <strong>Pay with Razorpay</strong> (opens in a new tab).</li>
+            <li>After payment, click <strong>Verify Payment & Renewal</strong> (Google Form opens in new tab).</li>
+            <li>Submit RCID & Transaction ID/Screenshot in the form. Admin validates manually.</li>
+          </ol>
+
+          <div class="renew-card" style="margin-top:12px">
+            <div><strong>Amount:</strong> ₹300 per month</div>
+            <div class="renew-actions">
+              <a id="payRazor" class="btn-primary" target="_blank" rel="noopener">Pay with Razorpay</a>
+              <a id="verifyForm" class="btn-ghost" target="_blank" rel="noopener">Verify Payment & Renewal</a>
+            </div>
+            <div class="small notice">For offline/UPI payments contact admin. After payment, use verification form to submit transaction details.</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- CONTACT -->
+      <section id="page-contact" class="page">
+        <div class="card">
+          <h2>Contact</h2>
+          <form id="contactForm" style="margin-top:12px">
+            <div class="row"><label>Name *</label><input name="name" required /></div>
+            <div class="row"><label>Email *</label><input name="email" type="email" required /></div>
+            <div class="row"><label>Message *</label><textarea name="message" rows="4" required></textarea></div>
+            <div class="row"><label><input type="checkbox" name="consent" required /> <span class="small">I consent to storing this message</span></label></div>
+            <div style="margin-top:10px"><button class="btn-primary" type="submit">Send Message</button></div>
+            <div id="contactResult" class="small" style="margin-top:12px"></div>
+          </form>
+        </div>
+      </section>
+
+      <!-- LEGAL -->
+      <section id="page-legal" class="page">
+        <div class="card">
+          <h2>Legal & Policies</h2>
+          <p class="small">Reflectory follows India's DPDP Act 2023. We do not provide mentorship to minors without parental consent. Data is stored only as necessary and deletable on request.</p>
+          <dl class="small">
+            <dt>Grievance Officer</dt><dd>Karan Rajput — <a href="mailto:reflectory.in@gmail.com" class="link-underline">reflectory.in@gmail.com</a></dd>
+            <dt>Response window</dt><dd>7 business days</dd>
+          </dl>
+          <div style="margin-top:10px" class="small">Links: Privacy Policy • Terms & Conditions • Parental Consent • Refund Policy</div>
+        </div>
+      </section>
+    </main>
+
+    <footer style="margin-top:18px">
+      <div style="display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap">
+        <div class="footer-left small">© Reflectory — Mentorship • Education • Guidance • Learning • AI-Assisted — MSME registered</div>
+        <div class="social small">Instagram: <a href="https://instagram.com/reflectory.in" target="_blank" rel="noopener" class="link-underline">reflectory.in</a></div>
+      </div>
+    </footer>
+  </div>
+
+  <div id="toast" class="toast">Saved</div>
 
   <script>
-    // Frontend logic: uses backend /site-config to get runtime links (Razorpay + Google forms)
-    const qs = el => document.querySelector(el);
-    let SITE = {
+    /********************************************************************
+     * Frontend: multi-page routing (History API), Gen-Z styling, and
+     * integration with backend endpoints (RCID, join, contact, renewal).
+     *
+     * This single file provides multi-page UX while allowing backend to
+     * serve it for any route (so links like /join or /renew are shareable).
+     ********************************************************************/
+
+    const ROUTES = {
+      '/': 'page-home',
+      '/home': 'page-home',
+      '/about': 'page-about',
+      '/programs': 'page-programs',
+      '/join': 'page-join',
+      '/renew': 'page-renew',
+      '/contact': 'page-contact',
+      '/legal': 'page-legal'
+    };
+
+    // Site config fetched from backend (razorpay/google links)
+    const SITE = {
       RAZORPAY_LINK: '#',
       GOOGLE_RENEW_FORM: '#',
       GOOGLE_JOIN_FORM: '#'
     };
 
-    async function loadConfig() {
+    async function loadSiteConfig() {
       try {
         const r = await fetch('/site-config');
         if (r.ok) {
-          const j = await r.json();
-          SITE = Object.assign(SITE, j);
+          const json = await r.json();
+          Object.assign(SITE, json);
         }
       } catch (e) {
-        console.warn('Could not load /site-config', e);
+        console.warn('site config not available', e);
       }
-      // apply links
-      qs('#payRazor').href = SITE.RAZORPAY_LINK || '#';
-      qs('#verifyForm').href = SITE.GOOGLE_RENEW_FORM || '#';
-      qs('#openJoinGoogle').href = SITE.GOOGLE_JOIN_FORM || '#';
+      // set links
+      document.getElementById('payRazor').href = SITE.RAZORPAY_LINK || '#';
+      document.getElementById('verifyForm').href = SITE.GOOGLE_RENEW_FORM || '#';
+      const btnGoogleJoin = document.getElementById('btnGoogleJoin');
+      if (btnGoogleJoin) btnGoogleJoin.addEventListener('click', ()=> window.open(SITE.GOOGLE_JOIN_FORM || '#', '_blank', 'noopener'));
     }
 
-    function showMsg(el, txt, ok=true) {
-      el.textContent = txt;
+    // Show toast
+    function toast(msg, ms=2500){
+      const t = document.getElementById('toast');
+      t.textContent = msg; t.style.display='block';
+      setTimeout(()=> t.style.display='none', ms);
+    }
+
+    // Router
+    function activateRoute(path, replace=false){
+      const id = ROUTES[path] || ROUTES['/'];
+      document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+      const el = document.getElementById(id);
+      if (el) el.classList.add('active');
+      // update nav active state
+      document.querySelectorAll('nav.main-nav a, #mobileMenu a').forEach(a=>{
+        a.classList.remove('active-link');
+        if (a.getAttribute('href') === path) a.classList.add('active-link');
+      });
+      const titleMap = {
+        'page-home':'Reflectory — Home',
+        'page-about':'Reflectory — About',
+        'page-programs':'Reflectory — Programs',
+        'page-join':'Reflectory — Join',
+        'page-renew':'Reflectory — Renew',
+        'page-contact':'Reflectory — Contact',
+        'page-legal':'Reflectory — Legal'
+      };
+      document.title = titleMap[id] || 'Reflectory';
+      if (replace) history.replaceState({path}, '', path); else history.pushState({path}, '', path);
+      window.scrollTo({top:0,behavior:'smooth'});
+    }
+
+    // Intercept internal links
+    document.addEventListener('click', (e) => {
+      const a = e.target.closest('a[data-link]');
+      if (!a) return;
+      const href = a.getAttribute('href');
+      if (href && href.startsWith('http')) return; // external
+      e.preventDefault();
+      activateRoute(href);
+    });
+
+    // Handle back/forward
+    window.addEventListener('popstate', (e) => {
+      const path = location.pathname;
+      activateRoute(path, true);
+    });
+
+    // Mobile menu toggle
+    const hambBtn = document.getElementById('hambBtn');
+    const mobileMenu = document.getElementById('mobileMenu');
+    if (hambBtn) {
+      hambBtn.addEventListener('click', () => {
+        mobileMenu.style.display = mobileMenu.style.display === 'block' ? 'none' : 'block';
+      });
+    }
+
+    // Get route from current location on page load
+    function initialRoute() {
+      const path = location.pathname;
+      if (ROUTES[path]) activateRoute(path, true);
+      else activateRoute('/', true);
+    }
+
+    // ------------------ Forms integration ------------------
+    function showResult(el, msg, ok=true){
+      el.textContent = msg;
       el.style.color = ok ? '#b6ffd9' : '#ffb6b6';
     }
 
-    // Join form submit
-    qs('#joinForm').addEventListener('submit', async (e) => {
-      e.preventDefault();
-      const f = e.target;
-      const data = {
-        name: f.name.value.trim(),
-        email: f.email.value.trim(),
-        rcid: f.rcid.value.trim() || undefined,
-        is_minor: f.is_minor.value === 'true',
-        parental_consent_given: f.parental_consent_given.value === 'true',
-        consent_text: f.consent.checked ? true : false,
-        ai_ack: f.ai_ack.checked ? true : false
-      };
-      const resEl = qs('#joinResult');
-      try {
-        const r = await fetch('/api/join', { method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify(data) });
-        const j = await r.json();
-        if (r.ok && j.ok) {
-          showMsg(resEl, `Join submitted. RCID: ${j.rcid || 'none'}. We will contact you by email.`, true);
-          f.reset();
-        } else {
-          showMsg(resEl, j.error || 'Error submitting join', false);
+    // JOIN form
+    const joinForm = document.getElementById('joinForm');
+    if (joinForm) {
+      joinForm.addEventListener('submit', async (ev) => {
+        ev.preventDefault();
+        const f = new FormData(joinForm);
+        const data = {
+          name: f.get('name')?.trim(),
+          email: f.get('email')?.trim(),
+          rcid: f.get('rcid')?.trim() || undefined,
+          is_minor: f.get('is_minor') === 'true',
+          parental_consent_given: f.get('parental_consent_given') === 'true',
+          consent_text: f.get('consent') === 'on' || f.get('consent') === 'true',
+          ai_ack: f.get('ai_ack') === 'on' || f.get('ai_ack') === 'true'
+        };
+        const resEl = document.getElementById('joinResult');
+        try {
+          const r = await fetch('/api/join', { method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify(data) });
+          const j = await r.json();
+          if (r.ok && j.ok) {
+            showResult(resEl, `Submitted — RCID: ${j.rcid || 'N/A'}. We'll contact you via email.`, true);
+            joinForm.reset();
+            toast('Join request submitted ✅');
+          } else {
+            showResult(resEl, j.error || 'Submission failed', false);
+          }
+        } catch (err) {
+          showResult(resEl, 'Network error', false);
+          console.error(err);
         }
-      } catch (err) {
-        showMsg(resEl, 'Network error', false);
-        console.error(err);
-      }
-    });
-
-    // Get or create RCID by email
-    qs('#getRCID').addEventListener('click', async () => {
-      const email = prompt('Enter email to get or create RCID:');
-      if (!email) return;
-      const el = qs('#rcidResult');
-      showMsg(el, 'Working...', true);
-      try {
-        const r = await fetch('/api/get-or-create-rcid', { method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify({ email }) });
-        const j = await r.json();
-        if (r.ok && j.ok) {
-          showMsg(el, `RCID: ${j.rcid} ${j.created ? '(newly created)' : '(existing)'}`, true);
-        } else {
-          showMsg(el, j.error || 'Error', false);
-        }
-      } catch (err) {
-        showMsg(el, 'Network error', false);
-      }
-    });
-
-    // Contact form
-    qs('#contactForm').addEventListener('submit', async (e) => {
-      e.preventDefault();
-      const f = e.target;
-      const data = { name:f.name.value.trim(), email:f.email.value.trim(), message:f.message.value.trim(), consent: f.consent.checked };
-      const resEl = qs('#contactResult');
-      if (!data.consent) {
-        showMsg(resEl, 'Please give consent to store your message.', false); return;
-      }
-      try {
-        const r = await fetch('/api/contact', { method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify(data) });
-        const j = await r.json();
-        if (r.ok && j.ok) {
-          showMsg(resEl, 'Message sent. We will reach out to you soon.', true);
-          f.reset();
-        } else showMsg(resEl, j.error || 'Error sending', false);
-      } catch (err) {
-        showMsg(resEl, 'Network error', false);
-      }
-    });
-
-    window.addEventListener('load', () => {
-      loadConfig();
-      // Anchor smooth scroll
-      document.querySelectorAll('a[href^="#"]').forEach(a=>{
-        a.addEventListener('click', (ev) => {
-          ev.preventDefault();
-          const id = a.getAttribute('href').slice(1);
-          const el = document.getElementById(id);
-          if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        });
       });
+    }
+
+    // GET or CREATE RCID button
+    const btnGetRCID = document.getElementById('btnGetRCID');
+    if (btnGetRCID) {
+      btnGetRCID.addEventListener('click', async () => {
+        const email = prompt('Enter email to get/create RCID:');
+        if (!email) return;
+        const el = document.getElementById('joinResult');
+        showResult(el, 'Working...', true);
+        try {
+          const r = await fetch('/api/get-or-create-rcid', { method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify({ email }) });
+          const j = await r.json();
+          if (r.ok && j.ok) {
+            showResult(el, `RCID: ${j.rcid} ${j.created ? '(new)' : '(existing)'}`, true);
+            toast('RCID returned');
+          } else showResult(el, j.error || 'Error', false);
+        } catch (err) {
+          showResult(el, 'Network error', false);
+        }
+      });
+    }
+
+    // CONTACT form
+    const contactForm = document.getElementById('contactForm');
+    if (contactForm) {
+      contactForm.addEventListener('submit', async (ev) => {
+        ev.preventDefault();
+        const f = new FormData(contactForm);
+        const data = { name: f.get('name')?.trim(), email: f.get('email')?.trim(), message: f.get('message')?.trim(), consent: f.get('consent') === 'on' };
+        const resEl = document.getElementById('contactResult');
+        if (!data.consent) { showResult(resEl, 'Please provide consent', false); return; }
+        try {
+          const r = await fetch('/api/contact', { method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify(data) });
+          const j = await r.json();
+          if (r.ok && j.ok) {
+            showResult(resEl, 'Message sent — we will reach out soon', true);
+            contactForm.reset();
+            toast('Message sent 💌');
+          } else showResult(resEl, j.error || 'Error sending', false);
+        } catch (err) {
+          showResult(resEl, 'Network error', false);
+        }
+      });
+    }
+
+    // On load
+    window.addEventListener('load', async () => {
+      await loadSiteConfig();
+      initialRoute();
+    });
+
+    // Ensure deep links (if user arrives at /join directly, we still show the right page)
+    document.addEventListener('DOMContentLoaded', () => {
+      // nothing else needed — initialRoute uses location.pathname
     });
   </script>
 </body>
