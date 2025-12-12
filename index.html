@@ -3,651 +3,407 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Reflectory — Empowering Student Decisions</title>
+  <title>Reflectory — Where clarity meets guidance</title>
 
-  <!-- Poppins -->
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <!-- Modern font -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
 
   <style>
     :root{
-      /* Luxury / logo-inspired palette */
-      --navy: #0b1020;          /* primary deep navy from logo */
-      --navy-2: #0f1630;
-      --metal-100: #f3f5f7;     /* light metallic */
-      --metal-200: #cfd6db;     /* silver */
-      --accent-1: #88aaff;      /* subtle blue tint */
-      --glass: rgba(255,255,255,0.06);
-      --glass-2: rgba(255,255,255,0.04);
-      --muted-light: rgba(255,255,255,0.72);
-      --muted-soft: rgba(255,255,255,0.6);
-      --radius: 14px;
+      /* Mobile-first palette: midnight base with neon gradient accents */
+      --bg: #050613;                 /* near-black midnight */
+      --muted: #cbd5e1;
+      --glass: rgba(255,255,255,0.04);
+      --card-bg: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+      --accentA: #6C63FF;           /* indigo */
+      --accentB: #FF5CA8;           /* magenta */
+      --accent-grad: linear-gradient(90deg,var(--accentA),var(--accentB));
+      --soft-glow: 0 10px 30px rgba(108,99,255,0.14);
+      --glass-border: rgba(255,255,255,0.06);
+      --radius: 16px;
       --max-width: 1100px;
-      --shadow-lg: 0 12px 40px rgba(2,6,23,0.6);
-      --shadow-soft: 0 8px 30px rgba(2,6,23,0.45);
     }
 
+    /* Base */
     *{box-sizing:border-box}
     html,body{height:100%}
     body{
       margin:0;
-      font-family:"Poppins", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+      font-family:Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
       background:
-        radial-gradient(1200px 600px at 10% 10%, rgba(136,170,255,0.06), transparent 8%),
-        linear-gradient(180deg, var(--navy) 0%, var(--navy-2) 100%);
-      color:var(--metal-100);
+         radial-gradient(800px 400px at 10% 10%, rgba(108,99,255,0.06), transparent 8%),
+         radial-gradient(800px 400px at 90% 90%, rgba(255,92,168,0.04), transparent 6%),
+         var(--bg);
+      color:var(--muted);
       -webkit-font-smoothing:antialiased;
       -moz-osx-font-smoothing:grayscale;
-      line-height:1.5;
+      line-height:1.45;
       -webkit-tap-highlight-color: transparent;
-      min-height:100vh;
     }
 
-    a{color:inherit}
-    .site { max-width:var(--max-width); margin:0 auto; padding:20px; }
+    a{color:inherit;text-decoration:none}
+    img{max-width:100%;display:block}
 
-    /* Header */
+    /* Container */
+    .wrap{ max-width:var(--max-width); margin:0 auto; padding:18px; }
+
+    /* Header (compact on mobile) */
     header{
       position:sticky; top:0; z-index:1200;
-      background:linear-gradient(180deg, rgba(11,16,32,0.55), rgba(11,16,32,0.32));
+      background: linear-gradient(180deg, rgba(5,6,19,0.55), rgba(5,6,19,0.3));
       backdrop-filter: blur(8px) saturate(120%);
-      border-bottom:1px solid rgba(255,255,255,0.04);
-      padding:10px 0;
-      box-shadow: var(--shadow-soft);
+      border-bottom:1px solid var(--glass-border);
     }
-    .nav-inner{
-      display:flex; align-items:center; justify-content:space-between;
-      gap:16px; padding:6px 18px; max-width:var(--max-width); margin:0 auto;
-    }
+    .nav{ display:flex; align-items:center; justify-content:space-between; gap:12px; padding:10px 14px; max-width:var(--max-width); margin:0 auto; }
+    .brand{ display:flex; align-items:center; gap:10px; }
+    .brand img{ width:42px; height:42px; border-radius:10px; box-shadow: var(--soft-glow); }
+    .brand .name{ font-weight:700; color:white; font-size:1rem; letter-spacing:0.2px; display:block }
+    .nav-right{ display:flex; gap:10px; align-items:center; }
 
-    .brand{ display:flex; align-items:center; gap:12px; text-decoration:none; color:var(--metal-100) }
-    .brand img{ width:44px; height:44px; object-fit:contain; border-radius:10px; box-shadow: 0 6px 18px rgba(0,0,0,0.45)}
-    .brand .title{ font-weight:700; font-size:1.05rem; letter-spacing:0.2px; color:var(--metal-100) }
+    /* hamburger for mobile */
+    .hamburger{ display:flex; align-items:center; gap:6px; background:transparent; border:0; color:var(--muted); padding:8px; border-radius:10px; cursor:pointer; }
+    .hamburger svg{ display:block }
 
-    nav{ display:flex; align-items:center; gap:14px }
-    .nav-links{ display:flex; gap:8px; align-items:center }
-    .nav-links a{
-      color:var(--muted-soft); text-decoration:none; font-weight:600; padding:8px 12px;
-      border-radius:10px; transition: all .18s ease; font-size:0.94rem;
+    /* top nav links (hidden on small) */
+    .links{ display:none; gap:10px; align-items:center; }
+    .link {
+      padding:8px 12px; border-radius:10px; font-weight:600; color:var(--muted);
+      transition:transform .16s ease, background .16s ease;
     }
-    .nav-links a:hover, .nav-links a.active{
-      color:var(--metal-100); transform:translateY(-3px);
-      background:linear-gradient(90deg, rgba(136,170,255,0.08), rgba(255,255,255,0.02));
-      box-shadow: 0 8px 26px rgba(8,12,24,0.45);
-    }
+    .link:hover{ transform:translateY(-3px); color:#fff; background: rgba(255,255,255,0.02) }
 
-    .nav-cta{
-      padding:10px 14px; border-radius:12px; font-weight:800; font-size:0.95rem;
-      background: linear-gradient(90deg, rgba(255,255,255,0.12), rgba(136,170,255,0.06));
-      color:var(--metal-100); border:1px solid rgba(255,255,255,0.06);
-      box-shadow: 0 12px 30px rgba(8,12,24,0.5);
+    /* CTA */
+    .cta{
+      display:inline-flex; align-items:center; gap:8px; padding:10px 14px; border-radius:12px; font-weight:800;
+      background:var(--accent-grad); color:white; border:1px solid rgba(255,255,255,0.06); box-shadow: var(--soft-glow);
+      text-decoration:none;
     }
 
-    .hamburger{ display:none; background:transparent; border:0; padding:8px; border-radius:8px; cursor:pointer; color:var(--metal-100) }
-
-    /* Hero */
-    section{ padding:48px 0 }
-    .hero{ display:flex; gap:28px; align-items:center; justify-content:space-between; padding-top:12px; padding-bottom:8px; }
-    .hero-left{ flex:1; min-width:260px; }
-    .hero-right{ flex:1; display:flex; justify-content:center; align-items:center; }
-
-    h1{
-      font-size:2.1rem; margin:8px 0 12px; line-height:1.05; color:var(--metal-100);
-      text-shadow: 0 6px 22px rgba(3,6,12,0.6);
-    }
-    p.lead{ color:var(--muted-light); font-size:1.02rem; margin-bottom:14px; max-width:60ch }
-
-    .logo-big{
-      width:100%; max-width:460px; border-radius:16px; box-shadow: var(--shadow-lg);
-      transform:translateY(0); transition: transform .45s cubic-bezier(.2,.9,.27,1);
-    }
-    .logo-big:hover{ transform:translateY(-8px) rotate(-0.8deg) }
-
-    .cta-row{ display:flex; gap:12px; align-items:center; flex-wrap:wrap; margin-top:8px }
-    .btn{
-      display:inline-flex; align-items:center; gap:10px; padding:12px 18px; border-radius:12px;
-      font-weight:800; text-decoration:none; cursor:pointer; border:1px solid rgba(255,255,255,0.06);
-      transition:all .18s ease; background: linear-gradient(90deg, rgba(255,255,255,0.06), rgba(136,170,255,0.04));
-      color:var(--metal-100);
-      box-shadow: 0 10px 30px rgba(3,6,12,0.45);
-    }
-    .btn.secondary{
-      background:transparent; color:var(--metal-100); border:1px dashed rgba(255,255,255,0.06); font-weight:700;
-      backdrop-filter: blur(4px);
-    }
-    .btn:active{ transform:translateY(1px) }
-
-    /* Cards */
-    .cards{ display:grid; grid-template-columns:repeat(2,1fr); gap:18px; margin-top:18px }
-    .card{
-      background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+    /* HERO - mobile-first */
+    .hero{ margin:18px auto 6px; padding:18px; border-radius:20px; background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01)); border:1px solid var(--glass-border); box-shadow: 0 12px 40px rgba(2,6,23,0.6); display:flex; gap:16px; align-items:center; flex-direction:column; text-align:center; }
+    .hero .badge{
+      display:inline-flex; align-items:center; gap:8px; padding:6px 10px; border-radius:999px; font-weight:700; font-size:0.84rem;
+      background: linear-gradient(90deg, rgba(108,99,255,0.12), rgba(255,92,168,0.08)); color:#fff;
       border:1px solid rgba(255,255,255,0.03);
-      border-radius:12px; padding:18px; box-shadow: 0 8px 30px rgba(3,6,12,0.45);
-    }
-    .card h3{ margin:0 0 6px; color:var(--metal-100) }
-    .card p{ margin:0; color:var(--muted-light); }
-
-    /* Form / glass */
-    .form-card{
-      background: linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.02));
-      padding:18px; border-radius:12px; border:1px solid rgba(255,255,255,0.04);
-      box-shadow: 0 10px 30px rgba(3,6,12,0.45);
-    }
-    label{ display:block; font-weight:700; font-size:0.9rem; color:var(--metal-100); margin-bottom:6px }
-    input, textarea, select{
-      width:100%; padding:10px 12px; border-radius:10px; border:1px solid rgba(255,255,255,0.04);
-      background: rgba(255,255,255,0.02); color:var(--metal-100); font-size:0.95rem;
-    }
-    textarea{ min-height:120px; }
-
-    .small{ font-size:0.9rem; color:var(--muted-soft) }
-
-    footer{ padding:36px 0 80px; border-top:1px solid rgba(255,255,255,0.03); margin-top:20px }
-
-    /* utility */
-    .section-title{ font-size:1.15rem; font-weight:700; color:var(--metal-100); display:flex; gap:10px; align-items:center }
-    .rule{ height:1px; background: linear-gradient(90deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01)); margin:14px 0; border-radius:2px }
-
-    /* responsive */
-    @media (max-width:920px){
-      .cards{ grid-template-columns:1fr }
-      .hero{ flex-direction:column-reverse; gap:18px; text-align:center }
-      .hero-right{ width:100% }
-    }
-    @media (max-width:720px){
-      .nav-links{ display:none }
-      .hamburger{ display:inline-flex }
-      .nav-cta{ display:none }
-      .nav-inner{ padding:10px }
-      .brand .title{ display:none }
     }
 
-    /* mobile menu */
-    .mobile-menu{
-      display:none; position:absolute; right:18px; top:72px; width:240px;
-      background: linear-gradient(180deg, rgba(11,16,32,0.95), rgba(11,16,32,0.9));
-      border-radius:12px; padding:10px; box-shadow: 0 12px 30px rgba(2,6,23,0.6);
-      border:1px solid rgba(255,255,255,0.03)
-    }
-    .mobile-menu a{ display:block; padding:10px 12px; color:var(--muted-soft); text-decoration:none; border-radius:8px; font-weight:700 }
-    .mobile-menu a:hover{ background: rgba(136,170,255,0.04); color:var(--metal-100) }
+    h1{ font-size:1.6rem; margin:10px 0 8px; color: #fff; line-height:1.02; letter-spacing:-0.2px }
+    p.lead{ margin:0; color: #dbe7ff; font-size:0.98rem; max-width:56ch }
 
-    /* subtle entrance */
-    .page{ display:none; opacity:0; transform:translateY(6px); transition: all .28s ease }
-    .page.show{ display:block; opacity:1; transform:none }
+    .hero-media{ width:220px; height:220px; border-radius:18px; overflow:hidden; display:flex; align-items:center; justify-content:center; background:linear-gradient(135deg, rgba(255,255,255,0.02), rgba(255,255,255,0.0)); border:1px solid rgba(255,255,255,0.03); box-shadow: var(--soft-glow) }
+
+    .actions{ display:flex; gap:10px; margin-top:12px; flex-wrap:wrap; justify-content:center }
+    .btn{ padding:12px 16px; border-radius:12px; font-weight:800; cursor:pointer; border:1px solid rgba(255,255,255,0.04); background: rgba(255,255,255,0.03); color:var(--muted); min-width:120px; text-align:center }
+    .btn.primary{ background:var(--accent-grad); color:white; box-shadow:var(--soft-glow); border:none }
+    .btn.ghost{ background:transparent; border:1px dashed rgba(255,255,255,0.03); color:var(--muted) }
+
+    /* Cards stack */
+    .stack{ margin-top:18px; display:grid; gap:12px; grid-template-columns:1fr; }
+
+    .card{
+      background:var(--card-bg); border-radius:14px; padding:14px; border:1px solid var(--glass-border);
+      box-shadow: 0 8px 30px rgba(3,6,12,0.45);
+    }
+    .card h3{ margin:0 0 8px; color:#fff; font-size:1.02rem }
+    .card p{ margin:0; color:var(--muted); font-size:0.95rem }
+
+    /* two-column layout for larger screens */
+    @media (min-width:760px){
+      .hero{ flex-direction:row; text-align:left; padding:28px }
+      .hero .left{ flex:1 }
+      .hero .right{ flex:0 0 420px; display:flex; justify-content:center; align-items:center }
+      .links{ display:flex }
+    }
+
+    @media (min-width:1024px){
+      h1{ font-size:2.35rem }
+      .hero-media{ width:320px; height:320px; border-radius:20px }
+      .stack{ grid-template-columns:repeat(2,1fr); gap:18px }
+    }
+
+    /* Sticky bottom CTA on small screens */
+    .bottom-cta{
+      display:flex; align-items:center; justify-content:center; gap:10px;
+      position:fixed; left:12px; right:12px; bottom:12px; z-index:1400;
+      padding:10px 12px; border-radius:14px; backdrop-filter: blur(6px); border:1px solid rgba(255,255,255,0.04);
+      background: linear-gradient(180deg, rgba(6,8,22,0.8), rgba(6,8,22,0.65));
+      box-shadow: 0 18px 40px rgba(2,6,23,0.6);
+    }
+    @media (min-width:760px){ .bottom-cta{ display:none } }
+
+    /* Footer */
+    footer{ margin-top:38px; padding:28px 12px; border-top:1px solid rgba(255,255,255,0.03); color:var(--muted); }
+    .footer-inner{ max-width:var(--max-width); margin:0 auto; display:flex; gap:12px; align-items:center; justify-content:space-between; flex-wrap:wrap; padding:0 6px; }
+
+    /* small helpers */
+    .muted{ color:var(--muted); font-size:0.94rem }
+    .tiny{ font-size:0.82rem; color:rgba(255,255,255,0.5) }
+
+    /* focus outlines */
+    a:focus, button:focus, input:focus, select:focus, textarea:focus{ outline:3px solid rgba(108,99,255,0.14); outline-offset:3px; border-radius:10px }
   </style>
 </head>
 <body>
-  <a href="#main" class="skip-link" style="position:absolute;left:-9999px;top:auto;overflow:hidden;">Skip to content</a>
-
-  <!-- Header -->
-  <header aria-label="Main header">
-    <div class="nav-inner" role="navigation" aria-label="Primary">
-      <a class="brand" href="#" data-target="home" id="brandLink" aria-label="Reflectory Home">
-        <img src="logo.png" alt="Reflectory logo" />
-        <div class="title">Reflectory</div>
+  <header>
+    <div class="nav wrap" role="navigation" aria-label="Main navigation">
+      <a class="brand" href="#home" aria-label="Reflectory home">
+        <img src="logo.png" alt="" />
+        <div>
+          <div class="name">Reflectory</div>
+          <div class="tiny">student-first mentorship</div>
+        </div>
       </a>
 
-      <nav>
-        <div class="nav-links" id="navLinks">
-          <a href="#home" data-target="home" class="nav-link active" aria-current="page">Home</a>
-          <a href="#about" data-target="about" class="nav-link">About</a>
-          <a href="#programs" data-target="programs" class="nav-link">Programs</a>
-          <a href="#join" data-target="join" class="nav-link">Join Us</a>
-          <a href="#contact" data-target="contact" class="nav-link">Contact</a>
-        </div>
+      <div class="nav-right">
+        <nav class="links" aria-label="Primary">
+          <a class="link" href="#programs" data-target="programs">Programs</a>
+          <a class="link" href="#about" data-target="about">About</a>
+          <a class="link" href="#join" data-target="join">Join</a>
+          <a class="link" href="#contact" data-target="contact">Contact</a>
+        </nav>
 
-        <a href="#renew" data-target="renew" class="nav-cta" id="navCTA">Get Started</a>
+        <a class="cta" href="#join" data-target="join">Get Started</a>
 
-        <button class="hamburger" id="hamburger" aria-expanded="false" aria-label="Open menu">
-          <svg width="22" height="14" viewBox="0 0 22 14" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-            <rect width="22" height="2" rx="1" y="0" fill="white" opacity="0.85"/>
-            <rect width="16" height="2" rx="1" y="6" fill="white" opacity="0.85"/>
-            <rect width="12" height="2" rx="1" y="12" fill="white" opacity="0.85"/>
+        <button class="hamburger" id="menuButton" aria-expanded="false" aria-controls="mobileMenu" aria-label="Open menu">
+          <svg width="18" height="12" viewBox="0 0 18 12" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <rect width="18" height="2" rx="1" fill="#fff" opacity="0.9"></rect>
+            <rect y="5" width="18" height="2" rx="1" fill="#fff" opacity="0.8"></rect>
+            <rect y="10" width="18" height="2" rx="1" fill="#fff" opacity="0.7"></rect>
           </svg>
         </button>
+      </div>
+    </div>
 
-        <div class="mobile-menu" id="mobileMenu" role="menu" aria-hidden="true">
-          <a href="#home" data-target="home" class="mobile-link" role="menuitem">Home</a>
-          <a href="#about" data-target="about" class="mobile-link" role="menuitem">About</a>
-          <a href="#programs" data-target="programs" class="mobile-link" role="menuitem">Programs</a>
-          <a href="#join" data-target="join" class="mobile-link" role="menuitem">Join Us</a>
-          <a href="#contact" data-target="contact" class="mobile-link" role="menuitem">Contact</a>
-          <div style="height:8px"></div>
-          <a href="#renew" data-target="renew" class="btn">Get Started</a>
-        </div>
-      </nav>
+    <!-- Mobile menu -->
+    <div id="mobileMenu" style="display:none; padding:12px; border-top:1px solid rgba(255,255,255,0.02); background:linear-gradient(180deg, rgba(5,6,19,0.95), rgba(5,6,19,0.92));">
+      <div class="wrap" style="display:flex; flex-direction:column; gap:8px;">
+        <a class="link" href="#programs" data-target="programs">Programs</a>
+        <a class="link" href="#about" data-target="about">About</a>
+        <a class="link" href="#join" data-target="join">Join</a>
+        <a class="link" href="#contact" data-target="contact">Contact</a>
+      </div>
     </div>
   </header>
 
-  <main id="main" class="site" tabindex="-1">
-    <!-- HOME -->
-    <section id="homeSection" class="page show" aria-labelledby="homeHeading">
-      <div class="hero">
-        <div class="hero-left">
-          <div class="section-title"><span style="color:var(--accent-1)">Welcome to</span><strong style="margin-left:6px">Reflectory</strong></div>
-          <h1 id="homeHeading">Where clarity meets guidance — choose a career that reflects you</h1>
-          <p class="lead">We combine psychometrics, human-supervised AI insights and empathetic mentorship to help students find direction, build skills, and choose confidently.</p>
+  <main class="wrap" id="main">
+    <!-- HERO -->
+    <section class="hero" id="homeSection" aria-labelledby="homeTitle">
+      <div class="left">
+        <div class="badge">Reflectory • AI + Human</div>
+        <h1 id="homeTitle">Find a career that reflects who you really are</h1>
+        <p class="lead">Human-supervised AI insights, practical mentoring and habit-based growth — designed for students who want clarity and momentum.</p>
 
-          <div class="cta-row">
-            <a data-target="renew" class="btn" href="#renew" aria-label="Get started with Reflectory">
-              Get Started
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                <path d="M5 12h14" stroke="white" stroke-width="2" stroke-linecap="round"/>
-                <path d="M13 6l6 6-6 6" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-              </svg>
-            </a>
-            <a class="btn secondary" href="#about" data-target="about">Learn more</a>
-          </div>
-
-          <div style="height:12px"></div>
-          <div class="small" style="background:linear-gradient(90deg, rgba(255,255,255,0.02), transparent); padding:10px; border-radius:10px; border:1px solid rgba(255,255,255,0.03)">
-            Reflectory is an MSME-registered mentorship foundation (Palanpur, Gujarat). We comply with DPDP 2023 and require parental consent for personalised mentorship if under 18.
-          </div>
+        <div class="actions">
+          <a class="btn primary" href="#join" data-target="join">Start your profile</a>
+          <a class="btn ghost" href="#programs" data-target="programs">See programs</a>
         </div>
 
-        <div class="hero-right">
-          <img src="logo-big.png" alt="Reflectory large logo banner" class="logo-big" />
-        </div>
+        <div style="margin-top:12px" class="tiny">MSME registered • Parental consent required for personalised mentoring under 18</div>
+      </div>
+
+      <div class="right hero-media" aria-hidden="true">
+        <img src="logo-big.png" alt="Reflectory logo" style="width:84%; height:auto; filter: drop-shadow(0 10px 30px rgba(108,99,255,0.12));" />
       </div>
     </section>
 
-    <!-- ABOUT (content unchanged; styled) -->
-    <section id="aboutSection" class="page" aria-labelledby="aboutHeading">
-      <div class="section-title"><strong>About Reflectory</strong></div>
-      <div class="rule"></div>
+    <!-- cards / features -->
+    <section style="margin-top:18px;">
+      <div class="stack">
+        <article class="card" aria-labelledby="f1">
+          <h3 id="f1">Personal Mentorship</h3>
+          <p>One-on-one mentorship, goal-setting, and progress tracking. Human mentors review AI recommendations to keep things empathetic and practical.</p>
+        </article>
 
-      <div style="display:flex; gap:20px; align-items:flex-start; flex-wrap:wrap;">
-        <div style="flex:1; min-width:260px;">
-          <h2 id="aboutHeading">Who we are</h2>
-          <p class="small">Reflectory is a student-first mentorship foundation focused on clear, evidence-based career guidance and practical life skills. We combine human empathy with AI-assisted planning — always reviewed by mentors.</p>
+        <article class="card" aria-labelledby="f2">
+          <h3 id="f2">Career Clarity Lab</h3>
+          <p>Short psychometric checks + actionable roadmaps for education, internships, and skill stacking.</p>
+        </article>
 
-          <h3 style="margin-top:14px">Our Vision</h3>
-          <p class="small">A future where every student chooses a career aligned with abilities and values.</p>
+        <article class="card" aria-labelledby="f3">
+          <h3 id="f3">Skill Micro-courses</h3>
+          <p>Focused short courses — public speaking, productivity, portfolio building — small, practical, mentor-guided.</p>
+        </article>
 
-          <h3 style="margin-top:10px">Our Mission</h3>
-          <p class="small">Provide accessible, ethical mentorship combining human oversight and AI tools.</p>
+        <article class="card" aria-labelledby="f4">
+          <h3 id="f4">Support Circles</h3>
+          <p>Peer-led cohorts for routine, accountability and emotional resilience (not therapy).</p>
+        </article>
+      </div>
+    </section>
+
+    <!-- Join & quick form -->
+    <section id="joinSection" style="margin-top:18px;">
+      <div class="card">
+        <h3>Join Reflectory</h3>
+        <p class="muted">Students, mentors, and contributors welcome. Apply for membership or fill the quick interest form.</p>
+
+        <div style="display:flex; gap:10px; margin-top:12px; flex-wrap:wrap;">
+          <a class="btn primary" href="https://forms.gle/qhwavJxURvnb2Afz9" target="_blank" rel="noopener">Full application</a>
+          <button class="btn" id="openQuick">Quick interest</button>
         </div>
 
-        <div style="flex:1; min-width:260px;">
-          <h3>Values</h3>
-          <ul class="small" style="margin-top:6px; padding-left:18px;">
-            <li><strong>Clarity:</strong> Transparent, data-informed guidance.</li>
-            <li><strong>Compassion:</strong> Emotional safety and support.</li>
-            <li><strong>Ethics:</strong> Prioritise consent & privacy.</li>
-            <li><strong>Growth:</strong> Habit-based skill building.</li>
-          </ul>
-
-          <div style="height:12px"></div>
-          <div style="display:flex; gap:12px; flex-wrap:wrap">
-            <div class="form-card" style="min-width:160px">
-              <strong>Legal & Ethical</strong>
-              <p class="small" style="margin-top:6px">No individual consulting for minors under 18 without parental consent. AI outputs are reviewed by human mentors.</p>
+        <div id="quickPanel" style="display:none; margin-top:12px;">
+          <form id="quickForm" aria-label="Quick interest form" style="display:grid; gap:8px;">
+            <input name="name" placeholder="Your name" required style="padding:12px; border-radius:10px; border:1px solid rgba(255,255,255,0.04); background:transparent; color:var(--muted)">
+            <input name="email" type="email" placeholder="Email" required style="padding:12px; border-radius:10px; border:1px solid rgba(255,255,255,0.04); background:transparent; color:var(--muted)">
+            <select name="role" required style="padding:12px; border-radius:10px; border:1px solid rgba(255,255,255,0.04); background:transparent; color:var(--muted)">
+              <option value="">Role interest</option>
+              <option>Student - Mentorship</option>
+              <option>Peer Mentor</option>
+              <option>Content Creator</option>
+              <option>Volunteer</option>
+            </select>
+            <textarea name="message" placeholder="Short message (optional)" style="padding:12px; border-radius:10px; border:1px solid rgba(255,255,255,0.04); background:transparent; color:var(--muted)"></textarea>
+            <div style="display:flex; gap:8px;">
+              <button type="submit" class="btn primary" style="flex:1">Submit</button>
+              <button type="button" id="quickCancel" class="btn" style="flex:0">Cancel</button>
             </div>
-
-            <div class="form-card" style="min-width:160px">
-              <strong>Evidence-Based</strong>
-              <p class="small" style="margin-top:6px">Psychometric inputs + structured interviewing to recommend practical paths.</p>
-            </div>
-          </div>
+            <div id="quickFeedback" class="tiny" style="display:none"></div>
+          </form>
         </div>
       </div>
     </section>
 
-    <!-- PROGRAMS -->
-    <section id="programsSection" class="page" aria-labelledby="programsHeading">
-      <div class="section-title"><strong>Programs</strong></div>
-      <div class="rule"></div>
-      <p class="small">Reflectory offers programs for career clarity, practical skills and emotional resilience.</p>
-
-      <div class="cards" style="margin-top:14px;">
-        <article class="card" aria-labelledby="p1">
-          <h3 id="p1">Personal Mentorship</h3>
-          <p>One-on-one mentorship for mature students (18+). Tailored sessions for decision-making, goal-setting, and progress tracking. Parental consent required for those under 18.</p>
-        </article>
-
-        <article class="card" aria-labelledby="p2">
-          <h3 id="p2">Career Clarity</h3>
-          <p>Psychometric assessments + AI planning to map realistic career & education paths.</p>
-        </article>
-
-        <article class="card" aria-labelledby="p3">
-          <h3 id="p3">Skill Development</h3>
-          <p>Short courses on productivity, communication, public speaking, and disciplined habit formation.</p>
-        </article>
-
-        <article class="card" aria-labelledby="p4">
-          <h3 id="p4">Emotional Support Circles</h3>
-          <p>Peer-led groups for resilience and perspective-sharing. Facilitators are trained peer mentors (not therapists).</p>
-        </article>
-      </div>
-
-      <div style="margin-top:18px;">
-        <a class="btn" href="#join" data-target="join">Become a member</a>
-        <a class="btn secondary" href="#contact" data-target="contact">Contact us</a>
-      </div>
-    </section>
-
-    <!-- JOIN (unchanged content, styled) -->
-    <section id="joinSection" class="page" aria-labelledby="joinHeading">
-      <div class="section-title"><strong>Join Reflectory</strong></div>
-      <div class="rule"></div>
-
-      <div style="display:flex; gap:20px; align-items:flex-start; flex-wrap:wrap;">
-        <div style="flex:1; min-width:280px;">
-          <h2 id="joinHeading">Who can join</h2>
-          <p class="small">We welcome motivated students & early-career mentors who share our values. Roles: Peer Mentor, Content Creator, Program Coordinator, Research Associate.</p>
-
-          <h3 style="margin-top:10px">Age & Consent Rules</h3>
-          <p class="small">Applicants 18+ can apply for direct mentorship roles. Under 18 may volunteer but not provide individual consulting without parental approval.</p>
-
-          <div style="height:10px"></div>
-          <a class="btn" href="https://forms.gle/qhwavJxURvnb2Afz9" target="_blank" rel="noopener">Apply Now</a>
-        </div>
-
-        <div style="flex:1; min-width:280px;">
-          <div class="form-card">
-            <h3 style="margin-top:0">Quick interest form</h3>
-            <p class="small">Quick internal contact. For full membership use "Apply Now".</p>
-
-            <form id="quickJoinForm" aria-label="Quick join form">
-              <div style="display:flex; gap:12px; margin-bottom:12px;">
-                <div style="flex:1">
-                  <label for="qName">Name</label>
-                  <input id="qName" name="name" type="text" required placeholder="Your full name" />
-                </div>
-                <div style="flex:1">
-                  <label for="qEmail">Email</label>
-                  <input id="qEmail" name="email" type="email" required placeholder="you@example.com" />
-                </div>
-              </div>
-
-              <label for="qRole">Role interest</label>
-              <select id="qRole" name="role" required>
-                <option value="">Select...</option>
-                <option>Peer Mentor</option>
-                <option>Content Creator</option>
-                <option>Program Coordinator</option>
-                <option>Volunteer / Other</option>
-              </select>
-
-              <label for="qMsg">Short message</label>
-              <textarea id="qMsg" name="message" placeholder="Tell us why you'd like to join"></textarea>
-
-              <div style="height:12px"></div>
-              <div style="display:flex; gap:8px; align-items:center;">
-                <button type="submit" class="btn">Submit</button>
-                <div class="small">We will respond within 7 business days.</div>
-              </div>
-            </form>
-
-            <div id="quickJoinFeedback" class="small" style="display:none; margin-top:10px;"></div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- CONTACT -->
-    <section id="contactSection" class="page" aria-labelledby="contactHeading">
-      <div class="section-title"><strong>Contact Us</strong></div>
-      <div class="rule"></div>
-
-      <div style="display:flex; gap:20px; flex-wrap:wrap; align-items:flex-start;">
-        <div style="flex:1; min-width:260px;">
-          <h3 id="contactHeading">Get in touch</h3>
-          <p class="small">Email for queries, programs or partnerships.</p>
-
-          <p style="margin-top:12px;">
-            <strong>Email:</strong> <a href="mailto:reflectory.in@gmail.com">reflectory.in@gmail.com</a><br/>
-            <strong>Instagram:</strong> <a href="https://www.instagram.com/reflectory.in/" target="_blank" rel="noopener">@reflectory.in</a><br/>
-            <strong>Location:</strong> Palanpur, Gujarat, India
-          </p>
-
-          <div style="height:10px"></div>
-          <div class="small">For minors, parental involvement is required for personalised services.</div>
-        </div>
-
-        <div style="flex:1; min-width:320px;">
-          <div class="form-card">
-            <h3 style="margin-top:0">Send us a message</h3>
-
-            <form id="contactForm" aria-label="Contact form">
-              <label for="cName">Name</label>
-              <input id="cName" name="name" type="text" required placeholder="Your name" />
-
-              <label for="cEmail">Email</label>
-              <input id="cEmail" name="email" type="email" required placeholder="you@example.com" />
-
-              <label for="cMessage">Message</label>
-              <textarea id="cMessage" name="message" required placeholder="How can we help?"></textarea>
-
-              <div style="height:10px"></div>
-              <div style="display:flex; gap:8px; align-items:center;">
-                <button type="submit" class="btn">Send message</button>
-                <button type="button" class="btn secondary" id="contactClear">Clear</button>
-              </div>
-            </form>
-
-            <div id="contactFeedback" class="small" style="display:none; margin-top:12px;"></div>
-            <div style="margin-top:10px" class="small">Or email directly at <a href="mailto:reflectory.in@gmail.com">reflectory.in@gmail.com</a></div>
-          </div>
-        </div>
-      </div>
-
-      <div style="height:14px"></div>
-      <div class="small">
-        <strong>Grievance Officer</strong><br/>
-        Name: Karan Rajput — <a href="mailto:reflectory.in@gmail.com">reflectory.in@gmail.com</a><br/>
-        Palanpur, Gujarat — Response: within 7 business days
-      </div>
-    </section>
-
-    <!-- Privacy / Terms / Parental / Refund / Renew sections (content retained; visually styled) -->
-    <section id="privacy" class="page" aria-labelledby="privacyHeading">
-      <div class="section-title"><strong>Privacy Policy</strong></div>
-      <div class="rule"></div>
-      <div style="max-width:900px; margin:0 auto; padding:0 10px;">
-        <h2 id="privacyHeading" style="margin-top:0">Privacy Policy</h2>
-        <p><strong>Effective Date:</strong> November 2025</p>
-        <p class="small">Reflectory is committed to protecting personal information in compliance with DPDP 2023. We use AI tools with human oversight and do not sell personal data.</p>
-        <h3>What Data We Collect</h3>
-        <ul class="small">
-          <li>Name, age, contact (email, phone)</li>
-          <li>Education background and form responses</li>
-          <li>Parental details for minors</li>
-        </ul>
+    <!-- Contact -->
+    <section id="contactSection" style="margin-top:18px;">
+      <div class="card">
         <h3>Contact</h3>
-        <p class="small">For data requests: <strong>reflectory.in@gmail.com</strong></p>
+        <p class="muted">Email us for programs, partnerships or data/privacy requests.</p>
+        <p class="tiny" style="margin-top:8px"><strong>Email:</strong> <a href="mailto:reflectory.in@gmail.com">reflectory.in@gmail.com</a><br><strong>Instagram:</strong> <a href="https://www.instagram.com/reflectory.in/" target="_blank" rel="noopener">@reflectory.in</a></p>
+
+        <form id="contactForm" style="display:grid; gap:8px; margin-top:10px;">
+          <input name="cname" placeholder="Your name" required style="padding:12px; border-radius:10px; border:1px solid rgba(255,255,255,0.04); background:transparent; color:var(--muted)">
+          <input name="cemail" type="email" placeholder="Email" required style="padding:12px; border-radius:10px; border:1px solid rgba(255,255,255,0.04); background:transparent; color:var(--muted)">
+          <textarea name="cmessage" placeholder="Message" required style="padding:12px; border-radius:10px; border:1px solid rgba(255,255,255,0.04); background:transparent; color:var(--muted)"></textarea>
+          <div style="display:flex; gap:8px;">
+            <button type="submit" class="btn primary" style="flex:1">Send</button>
+            <button type="button" id="clearContact" class="btn">Clear</button>
+          </div>
+          <div id="contactFeedback" class="tiny" style="display:none"></div>
+        </form>
       </div>
     </section>
 
-    <section id="terms" class="page" aria-labelledby="termsHeading">
-      <div class="section-title"><strong>Terms &amp; Conditions</strong></div>
-      <div class="rule"></div>
-      <div style="max-width:900px; margin:0 auto; padding:0 10px;">
-        <h2 id="termsHeading" style="margin-top:0">Terms &amp; Conditions</h2>
-        <p class="small">These terms govern use of Reflectory's services. We provide mentorship and educational guidance, not professional therapy/financial/legal advice.</p>
-        <p class="small">Contact: reflectory.in@gmail.com</p>
+    <!-- Privacy & terms (compact) -->
+    <section style="margin-top:18px; display:grid; gap:10px;">
+      <div class="card">
+        <h3>Privacy & Consent</h3>
+        <p class="muted">We follow DPDP 2023 principles. Personalised mentoring for minors requires parental consent. AI outputs are reviewed by human mentors.</p>
+        <p class="tiny">For data requests: reflectory.in@gmail.com</p>
+      </div>
+
+      <div class="card">
+        <h3>Terms</h3>
+        <p class="muted">Reflectory provides mentorship and educational guidance — not professional medical, legal or financial advice.</p>
       </div>
     </section>
 
-    <section id="parental" class="page" aria-labelledby="parentalHeading">
-      <div class="section-title"><strong>Parental Consent</strong></div>
-      <div class="rule"></div>
-      <div style="max-width:900px; margin:0 auto; padding:0 10px;">
-        <h2 id="parentalHeading" style="margin-top:0">Parental Consent</h2>
-        <p class="small">We do not provide individual consulting to minors without explicit parental consent. The Parental Consent Form link will be provided when available.</p>
-        <p class="small">Contact: <strong>reflectory.in@gmail.com</strong></p>
-      </div>
-    </section>
-
-    <section id="refund" class="page" aria-labelledby="refundHeading">
-      <div class="section-title"><strong>Refund Policy</strong></div>
-      <div class="rule"></div>
-      <div style="max-width:900px; margin:0 auto; padding:0 10px;">
-        <h2 id="refundHeading" style="margin-top:0">Refund Policy</h2>
-        <p class="small">Refund policy (if applicable) will be communicated at time of purchase. For free/voluntary apps there is no refundable fee by default.</p>
-        <p class="small">Contact: reflectory.in@gmail.com</p>
-      </div>
-    </section>
-
-    <section id="renew" class="page" aria-labelledby="renewHeading">
-      <div class="section-title"><strong>Renew Subscription</strong></div>
-      <div class="rule"></div>
-      <div style="max-width:900px; margin:0 auto; padding:0 10px;">
-        <h2 id="renewHeading">Renew Your Reflectory Subscription</h2>
-        <p class="small">To continue sessions, reports & AI tools, complete renewal below.</p>
-        <p style="margin-top:10px"><a class="btn" href="https://reflectory.in/pay" target="_blank" rel="noopener">Pay Online (Razorpay)</a></p>
-        <p style="text-align:center; margin:8px 0">or</p>
-        <p><button class="btn secondary" disabled>Pay Offline (Cash / UPI)</button></p>
-
-        <div style="margin-top:18px">
-          <a href="https://forms.gle/vxdw2McpZFj57dRf7" target="_blank" class="btn">Verify Payment & Renewal</a>
-        </div>
-      </div>
-    </section>
-
-    <!-- Footer -->
     <footer>
-      <div style="max-width:var(--max-width); margin:0 auto; padding:0 18px; display:flex; justify-content:space-between; align-items:center; gap:12px; flex-wrap:wrap">
+      <div class="footer-inner">
         <div style="display:flex; gap:12px; align-items:center;">
-          <img src="logo.png" alt="Reflectory logo" width="48" height="48" style="border-radius:10px; box-shadow: 0 8px 30px rgba(3,6,12,0.45)"/>
+          <img src="logo.png" alt="" style="width:48px;height:48px;border-radius:10px;"/>
           <div>
-            <div style="font-weight:800; color:var(--metal-100)">Reflectory</div>
-            <div class="small" style="color:var(--muted-soft)">Empowering student decisions • Palanpur</div>
+            <div style="font-weight:800; color:#fff">Reflectory</div>
+            <div class="tiny">Palanpur, Gujarat • MSME</div>
           </div>
         </div>
 
         <div style="text-align:right">
-          <div class="small" style="font-weight:700; margin-bottom:8px">Quick links</div>
-          <a href="#home" data-target="home" class="footer-link">Home</a> &nbsp; · &nbsp;
-          <a href="#programs" data-target="programs" class="footer-link">Programs</a> &nbsp; · &nbsp;
-          <a href="#privacy" data-target="privacy" class="footer-link">Privacy</a>
+          <div class="tiny">© <span id="year"></span> Reflectory Foundation</div>
+          <div class="tiny">Contact: <a href="mailto:reflectory.in@gmail.com">reflectory.in@gmail.com</a></div>
         </div>
-      </div>
-
-      <div style="max-width:var(--max-width); margin:18px auto 0; padding:0 18px; text-align:center; color:var(--muted-soft)">
-        © <span id="year"></span> Reflectory Foundation | MSME Registered | Palanpur, Gujarat<br/>
-        Contact: <a href="mailto:reflectory.in@gmail.com">reflectory.in@gmail.com</a> • IG: <a href="https://www.instagram.com/reflectory.in/">@reflectory.in</a>
       </div>
     </footer>
   </main>
 
+  <!-- sticky CTA for mobile -->
+  <div class="bottom-cta" role="region" aria-label="Quick actions">
+    <a class="btn primary" href="#join" data-target="join" style="flex:1; text-align:center">Get Started</a>
+    <a class="btn" href="#contact" data-target="contact" style="min-width:92px">Contact</a>
+  </div>
+
   <script>
-    // SPA navigation & form handling (kept from original but adapted selectors)
+    // simple SPA-ish navigation & small interactions (no backend)
     (function(){
-      const pages = {
-        home: document.getElementById('homeSection'),
-        about: document.getElementById('aboutSection'),
-        programs: document.getElementById('programsSection'),
-        join: document.getElementById('joinSection'),
-        contact: document.getElementById('contactSection'),
-        privacy: document.getElementById('privacy'),
-        terms: document.getElementById('terms'),
-        parental: document.getElementById('parental'),
-        refund: document.getElementById('refund'),
-        renew: document.getElementById('renew')
-      };
-
-      const navLinks = Array.from(document.querySelectorAll('.nav-link'));
-      const mobileLinks = Array.from(document.querySelectorAll('.mobile-link'));
-      const brandLink = document.getElementById('brandLink');
-      const hamburger = document.getElementById('hamburger');
-      const mobileMenu = document.getElementById('mobileMenu');
-      const navCTA = document.getElementById('navCTA');
-
-      function showPage(key, pushState = true){
-        Object.values(pages).forEach(el=>{
-          if(!el) return;
-          el.classList.remove('show'); el.setAttribute('aria-hidden','true');
-        });
-        const target = pages[key];
-        if(target){
-          target.classList.add('show'); target.setAttribute('aria-hidden','false');
-          navLinks.forEach(a => a.classList.toggle('active', a.dataset.target === key));
-          if(pushState) history.pushState({page:key}, '', '#' + key);
-          target.scrollIntoView({behavior:'smooth', block:'start'});
-        }
-      }
-
-      navLinks.forEach(a=>{
-        a.addEventListener('click', e=>{
-          e.preventDefault();
-          showPage(a.dataset.target);
-        });
-      });
-
-      mobileLinks.forEach(a=>{
-        a.addEventListener('click', e=>{
-          e.preventDefault();
-          showPage(a.dataset.target);
-          toggleMobileMenu(false);
-        });
-      });
-
-      const footerLinks = Array.from(document.querySelectorAll('.footer-link'));
-      footerLinks.forEach(a=>{
-        a.addEventListener('click', e=>{
-          e.preventDefault();
-          const key = a.dataset.target || a.getAttribute('href').replace('#','');
-          if(pages[key]) showPage(key);
-        });
-      });
-
-      brandLink.addEventListener('click', e=>{ e.preventDefault(); showPage('home'); });
-
-      function toggleMobileMenu(force){
-        const isOpen = mobileMenu.style.display === 'block';
-        const open = (typeof force === 'boolean') ? force : !isOpen;
-        mobileMenu.style.display = open ? 'block' : 'none';
-        mobileMenu.setAttribute('aria-hidden', open ? 'false' : 'true');
-        hamburger.setAttribute('aria-expanded', open ? 'true' : 'false');
-      }
-      hamburger.addEventListener('click', ()=> toggleMobileMenu());
-
-      document.addEventListener('click', (e)=>{
-        if(!mobileMenu.contains(e.target) && !hamburger.contains(e.target)) toggleMobileMenu(false);
-      });
-
-      window.addEventListener('popstate', (e)=>{
-        const page = (e.state && e.state.page) ? e.state.page : (location.hash ? location.hash.slice(1) : 'home');
-        if(pages[page]) showPage(page, false);
-      });
-
-      const initial = location.hash ? location.hash.slice(1) : 'home';
-      if(pages[initial]) showPage(initial, false);
-      else showPage('home', false);
-
       document.getElementById('year').textContent = new Date().getFullYear();
 
-      // Quick Join: open mail client fallback
-      document.getElementById('quickJoinForm').addEventListener('submit', function(e){
+      // Mobile menu toggle
+      const menuBtn = document.getElementById('menuButton');
+      const mobileMenu = document.getElementById('mobileMenu');
+      menuBtn.addEventListener('click', ()=>{
+        const open = mobileMenu.style.display !== 'block';
+        mobileMenu.style.display = open ? 'block' : 'none';
+        menuBtn.setAttribute('aria-expanded', open ? 'true' : 'false');
+      });
+
+      // Quick panel
+      const openQuick = document.getElementById('openQuick');
+      const quickPanel = document.getElementById('quickPanel');
+      const quickCancel = document.getElementById('quickCancel');
+      openQuick.addEventListener('click', ()=>{ quickPanel.style.display = 'block'; quickPanel.scrollIntoView({behavior:'smooth'}); });
+      quickCancel.addEventListener('click', ()=>{ quickPanel.style.display = 'none'; });
+
+      // Quick form -> mailto fallback
+      const quickForm = document.getElementById('quickForm');
+      quickForm && quickForm.addEventListener('submit', function(e){
         e.preventDefault();
-        const name = this.name.value.trim(), email = this.email.value.trim(), role = this.role.value, msg = this.message.value.trim();
-        const fb = document.getElementById('quickJoinFeedback');
-        if(!name || !email || !role){ fb.style.display='block'; fb.style.color='crimson'; fb.textContent='Please fill name, email and role.'; return; }
-        const subject = encodeURIComponent('Reflectory - Quick join request from ' + name);
-        const body = encodeURIComponent('Name: ' + name + '\nEmail: ' + email + '\nRole: ' + role + '\n\n' + msg);
-        window.location.href = 'mailto:reflectory.in@gmail.com?subject=' + subject + '&body=' + body;
-        fb.style.display='block'; fb.style.color='limegreen'; fb.textContent='Opening your email client...';
+        const name = this.name?.value?.trim() || '';
+        const email = this.email?.value?.trim() || '';
+        const role = this.role?.value || '';
+        const msg = this.message?.value?.trim() || '';
+        const feedback = document.getElementById('quickFeedback');
+        if(!name || !email || !role){ feedback.style.display='block'; feedback.style.color='crimson'; feedback.textContent='Fill name, email and role.'; return; }
+        const subject = encodeURIComponent('Reflectory quick join: ' + name);
+        const body = encodeURIComponent('Name: ' + name + '\\nEmail: ' + email + '\\nRole: ' + role + '\\n\\n' + msg);
+        window.location.href = 'mailto:reflectory.in@gmail.com?subject='+subject+'&body='+body;
+        feedback.style.display='block'; feedback.style.color='limegreen'; feedback.textContent='Opening email client...';
+        this.reset();
+        setTimeout(()=> quickPanel.style.display='none', 800);
+      });
+
+      // Contact form -> mailto fallback
+      const contactForm = document.getElementById('contactForm');
+      contactForm && contactForm.addEventListener('submit', function(e){
+        e.preventDefault();
+        const n = this.cname?.value?.trim(), em = this.cemail?.value?.trim(), m = this.cmessage?.value?.trim();
+        const fb = document.getElementById('contactFeedback');
+        if(!n || !em || !m){ fb.style.display='block'; fb.style.color='crimson'; fb.textContent='Please complete the form.'; return; }
+        const s = encodeURIComponent('Reflectory contact: ' + n);
+        const b = encodeURIComponent('Name: ' + n + '\\nEmail: ' + em + '\\n\\n' + m);
+        window.location.href = 'mailto:reflectory.in@gmail.com?subject='+s+'&body='+b;
+        fb.style.display='block'; fb.style.color='limegreen'; fb.textContent='Opening email client...';
         this.reset();
       });
 
-      // Contact form
-      document.getElementById('contactForm').addEventListener('submit', function(e){
-        e.preventDefault();
-        const name=this.name.value.trim(), email=this.email.value.trim(), message=this.message.value.trim();
-        const fb=document.getElementById('contactFeedback');
-        if(!name || !email || !message){ fb.style.display='block'; fb.style.color='crimson'; fb.textContent='Please fill all required fields.'; return; }
-        const subject=encodeURIComponent('Reflectory - Contact from ' + name);
-        const body=encodeURIComponent('Name: ' + name + '\nEmail: ' + email + '\n\n' + message);
-        window.location.href='mailto:reflectory.in@gmail.com?subject=' + subject + '&body=' + body;
-        fb.style.display='block'; fb.style.color='limegreen'; fb.textContent='Opening your email client...';
-        this.reset();
+      document.getElementById('clearContact')?.addEventListener('click', ()=>{
+        document.getElementById('contactForm').reset();
+        document.getElementById('contactFeedback').style.display='none';
       });
 
-      document.getElementById('contactClear').addEventListener('click', function(){ document.getElementById('contactForm').reset(); document.getElementById('contactFeedback').style.display='none'; });
+      // Smooth scroll for internal links & close mobile menu
+      document.querySelectorAll('a[data-target]').forEach(a=>{
+        a.addEventListener('click', function(e){
+          const target = this.getAttribute('href')?.split('#')[1] || this.dataset.target;
+          if(target){
+            e.preventDefault();
+            const el = document.getElementById(target + 'Section') || document.getElementById(target);
+            if(el) el.scrollIntoView({behavior:'smooth', block:'start'});
+            // close mobile menu on selection
+            if(window.innerWidth < 760) { mobileMenu.style.display = 'none'; menuBtn.setAttribute('aria-expanded','false'); }
+          }
+        });
+      });
 
-      document.addEventListener('keydown', (e)=>{ if(e.key === 'Escape') toggleMobileMenu(false); });
+      // Accessibility: close mobile menu on escape
+      document.addEventListener('keydown', function(e){
+        if(e.key === 'Escape'){ mobileMenu.style.display = 'none'; menuBtn.setAttribute('aria-expanded','false'); }
+      });
+
+      // Reduce motion for users who prefer it
+      const mq = window.matchMedia('(prefers-reduced-motion: reduce)');
+      if(mq.matches){
+        document.documentElement.style.scrollBehavior = 'auto';
+      }
     })();
   </script>
 </body>
