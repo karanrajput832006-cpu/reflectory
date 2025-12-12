@@ -543,7 +543,32 @@
     // Ensure deep links (if user arrives at /join directly, we still show the right page)
     document.addEventListener('DOMContentLoaded', () => {
       // nothing else needed — initialRoute uses location.pathname
+    });    
+    <!-- ADD THIS JUST ABOVE THE </footer> tag -->
+<section id="greeting-section" class="card" style="margin-top:24px;padding:20px;text-align:center">
+  <h3>Test Backend Connection</h3>
+  <button id="getGreetingBtn" class="btn-primary" style="margin-top:10px">Get Greeting</button>
+  <p id="greetingMsg" class="small" style="margin-top:10px;color:var(--accent-2)"></p>
+</section>
+
+<script>
+  // Add this at the very bottom of your existing <script> (before </script>)
+  const greetingBtn = document.getElementById('getGreetingBtn');
+  if (greetingBtn) {
+    greetingBtn.addEventListener('click', async () => {
+      const msgEl = document.getElementById('greetingMsg');
+      msgEl.textContent = 'Loading...';
+      try {
+        const res = await fetch('/api/greeting');
+        const data = await res.json();
+        msgEl.textContent = data.text || 'No message returned.';
+      } catch (err) {
+        msgEl.textContent = 'Error: ' + err.message;
+      }
     });
+  }
+</script>
+
   </script>
 </body>
 </html>
