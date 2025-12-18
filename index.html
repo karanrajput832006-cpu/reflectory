@@ -1,394 +1,968 @@
+
+
 <!doctype html>
 <html lang="en">
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>Reflectory — Reflect. Decide. Move.</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Reflectory — Empowering Student Decisions</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&family=Playfair+Display:wght@600&display=swap" rel="stylesheet">
+  <!--
+    Reflectory Single-file Multi-page Website
+    - All code (HTML / CSS / JS) in one file as requested.
+    - Uses sections + JS to simulate multi-page navigation (show/hide).
+    - Images expected in same folder: logo.png, logo-big.png
 
-<style>
-  /* =========================
-     THEME: Avant-Garde + Clay + Glass
-     Deep navy base (logo) + warm gradient accents
-     Mobile-first, highly responsive
-     ========================= */
-  :root{
-    --bg:#050418;                 /* deep-navy core */
-    --paper: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
-    --muted:#cbd3ee;
-    --accent-1:#9a6cff;           /* lavender-indigo */
-    --accent-2:#ff6fa3;           /* coral-magenta */
-    --accent-3:#00d1ff;           /* cyan pop */
-    --glass: rgba(255,255,255,0.04);
-    --card-radius:20px;
-    --maxw:1100px;
-    --shadow-strong: 0 20px 60px rgba(2,6,23,0.6);
-    --shadow-soft: 0 10px 28px rgba(2,6,23,0.45);
-    --glass-border: rgba(255,255,255,0.04);
-    --focus: rgba(154,108,255,0.18);
-    --ui-size: 14px;
-  }
+    Applied the 17 previously-reviewed improvements (explicit list):
+    1. Text polishing & grammar fixes
+    2. Professional UI updates (cards, consistent spacing)
+    3. Consistent spacing & padding
+    4. Proper fonts (Poppins) with fallback
+    5. Responsive design (desktop / tablet / mobile)
+    6. Clean semantic HTML structure
+    7. Accessible navigation (aria, keyboard)
+    8. Sticky top nav with hover effects
+    9. Smooth transitions & smooth scroll
+    10. Polished CTA buttons & link states
+    11. Form usability + validation UI
+    12. Clear consent & legal copy (minors rules)
+    13. Mobile hamburger menu
+    14. Readable color contrast & soft theme
+    15. Optimized header/banner layout
+    16. Consistent iconography & small placeholders for socials
+    17. Comments and clear code organization for future edits
+  -->
 
-  *{box-sizing:border-box}
-  html,body{height:100%}
-  body{
-    margin:0;
-    font-family:Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
-    background: linear-gradient(180deg, var(--bg), #07102a 120%);
-    color:var(--muted);
-    -webkit-font-smoothing:antialiased;
-    -moz-osx-font-smoothing:grayscale;
-    line-height:1.45;
-    overflow-x:hidden;
-  }
+  <!-- Google Font: Poppins -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
 
-  a{color:inherit; text-decoration:none}
+  <style>
+    :root{
+      --bg: #fbfcff;
+      --card: #ffffff;
+      --muted: #6b7280;
+      --accent: #5b8cff; /* soft blue */
+      --accent-2: #8fd3ff; /* lighter */
+      --radius: 12px;
+      --max-width: 1100px;
+      --glass: rgba(255,255,255,0.7);
+      --shadow: 0 6px 18px rgba(16,24,40,0.08);
+    }
 
-  .wrap{ max-width:var(--maxw); margin:0 auto; padding:18px; }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family:"Poppins", Arial, sans-serif;
+      background:linear-gradient(180deg,#f7fbff 0%, #ffffff 100%);
+      color:#0f172a;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      line-height:1.5;
+      -webkit-tap-highlight-color: transparent;
+    }
 
-  /* decorative SVG sculpture */
-  .sculpture{
-    position:fixed; z-index:-2; inset:0; pointer-events:none;
-    display:block;
-    opacity:0.9;
-  }
+    /* Layout container */
+    .site {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 0 20px 80px;
+    }
 
-  /* header */
-  header{
-    display:flex; align-items:center; justify-content:space-between; gap:12px;
-    position:sticky; top:14px; z-index:60; margin:10px auto; max-width:var(--maxw);
-    padding:10px; border-radius:14px; background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
-    border:1px solid var(--glass-border); backdrop-filter: blur(8px) saturate(120%);
-  }
-  .brand{ display:flex; gap:12px; align-items:center; color: #fff; text-decoration:none }
-  .brand img{ width:46px; height:46px; border-radius:12px; object-fit:contain; box-shadow: var(--shadow-soft) }
-  .brand .title{ font-weight:800; letter-spacing:0.2px; font-size:1rem; color:#fff }
-  .brand .sub{ font-size:12px; color:var(--muted) }
+    /* Sticky header + nav */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 1200;
+      backdrop-filter: blur(6px);
+      background: linear-gradient(180deg, rgba(255,255,255,0.9), rgba(255,255,255,0.75));
+      border-bottom: 1px solid rgba(15,23,42,0.05);
+    }
+    .nav-inner {
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:16px;
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 10px 20px;
+    }
 
-  .nav{
-    display:flex; align-items:center; gap:10px;
-  }
-  .nav a{
-    padding:8px 10px; border-radius:10px; font-weight:700; color:var(--muted);
-  }
-  .nav a:hover{ color:#fff; transform:translateY(-3px); background:rgba(255,255,255,0.02) }
+    .brand {
+      display:flex;
+      align-items:center;
+      gap:12px;
+      text-decoration:none;
+      color:inherit;
+    }
+    .brand img { display:block; width:40px; height:40px; object-fit:contain; border-radius:8px; }
+    .brand .title { font-weight:700; letter-spacing:0.2px; font-size:1.05rem; }
 
-  .cta{
-    padding:10px 14px; border-radius:12px; font-weight:800; color:white; 
-    background:linear-gradient(90deg,var(--accent-1),var(--accent-2)); box-shadow: 0 12px 30px rgba(154,108,255,0.14);
-  }
+    nav {
+      display:flex;
+      align-items:center;
+      gap:16px;
+    }
+    .nav-links {
+      display:flex;
+      gap:12px;
+      align-items:center;
+    }
+    .nav-links a {
+      text-decoration:none;
+      color:var(--muted);
+      font-weight:600;
+      padding:8px 12px;
+      border-radius:8px;
+      transition:all .18s ease;
+      font-size:0.95rem;
+    }
+    .nav-links a:hover,
+    .nav-links a.active {
+      background:linear-gradient(90deg, rgba(91,140,255,0.12), rgba(143,211,255,0.06));
+      color:var(--accent);
+      transform:translateY(-1px);
+      box-shadow:var(--shadow);
+    }
 
-  /* hero - asymmetric split */
-  .hero{
-    margin:28px auto; padding:24px; display:flex; gap:20px; align-items:stretch; flex-direction:column;
-    background:var(--paper); border-radius:26px; border:1px solid var(--glass-border); box-shadow:var(--shadow-strong);
-    overflow:visible;
-  }
+    /* CTA in nav */
+    .nav-cta {
+      margin-left:8px;
+      background:var(--accent);
+      color:white;
+      padding:8px 14px;
+      border-radius:10px;
+      text-decoration:none;
+      font-weight:700;
+      font-size:0.92rem;
+      box-shadow: 0 6px 18px rgba(91,140,255,0.18);
+    }
+    .nav-cta:hover{ opacity:0.95; transform:translateY(-1px) }
 
-  /* On wide: left content, right sculpture card overlapping (asymmetry) */
-  .hero-grid{ display:flex; gap:22px; align-items:center; flex-direction:column; }
-  .hero-left{ flex:1; min-width:260px; }
-  .kicker{
-    display:inline-block; padding:8px 12px; border-radius:999px; font-weight:800; font-size:13px;
-    background: linear-gradient(90deg,var(--accent-1),var(--accent-3)); color:white; box-shadow: 0 8px 26px rgba(0,209,255,0.06);
-  }
-  h1{
-    margin:12px 0; font-family:"Playfair Display", serif; font-size:2rem; line-height:1.02;
-    background: linear-gradient(90deg,var(--accent-1),var(--accent-2)); -webkit-background-clip:text; background-clip:text; color:transparent;
-    font-weight:700;
-  }
-  p.lead{ margin:0; color: #dde9ff; max-width:62ch; font-size:1rem; font-weight:500 }
+    /* Hamburger (mobile) */
+    .hamburger {
+      display:none;
+      background:transparent;
+      border:0;
+      cursor:pointer;
+      padding:8px;
+      border-radius:8px;
+    }
+    .hamburger:focus { outline:2px solid rgba(91,140,255,0.18) }
 
-  .hero-right{
-    display:flex; align-items:center; justify-content:center; min-height:200px;
-    transform: translateY(0);
-  }
+    /* Sections */
+    section { padding:48px 0; }
+    .hero {
+      display:flex;
+      gap:28px;
+      align-items:center;
+      justify-content:space-between;
+      padding-top:24px;
+      padding-bottom:20px;
+    }
+    .hero-left { flex:1; min-width:260px; }
+    .hero-right { flex:1; display:flex; justify-content:center; align-items:center; }
 
-  .card-sculpt{
-    width:320px; height:320px; border-radius:22px; padding:18px;
-    background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
-    border:1px solid var(--glass-border); box-shadow: 0 30px 80px rgba(4,8,20,0.6);
-    display:flex; align-items:center; justify-content:center; position:relative; overflow:hidden;
-  }
+    .logo-big { max-width:420px; width:100%; height:auto; border-radius:14px; box-shadow:var(--shadow); }
 
-  /* floating clay panels inside the sculpt */
-  .clay{
-    position:absolute; border-radius:20px; transform:translate3d(0,0,0);
-    box-shadow: 0 18px 48px rgba(2,6,23,0.55);
-  }
-  .clay.c1{ width:180px; height:220px; left:-30px; top:24px; background:linear-gradient(180deg, rgba(154,108,255,0.18), rgba(255,111,160,0.08)); transform:rotate(-10deg); }
-  .clay.c2{ width:220px; height:140px; right:-40px; bottom:10px; background:linear-gradient(180deg, rgba(0,209,255,0.08), rgba(154,108,255,0.06)); transform:rotate(12deg); }
+    .muted { color:var(--muted); font-weight:400; }
 
-  .logo-stamp{ width:72%; height:auto; position:relative; z-index:3; filter: drop-shadow(0 18px 40px rgba(3,6,12,0.6)); }
+    h1 { font-size:1.85rem; margin:8px 0 12px; line-height:1.12; }
+    p.lead { font-size:1.05rem; color:#12243a; margin-bottom:16px; }
 
-  .actions{ display:flex; gap:12px; margin-top:14px; flex-wrap:wrap; align-items:center; }
-  .btn{ padding:12px 16px; border-radius:12px; font-weight:800; cursor:pointer; background:transparent; color:var(--muted); border:1px solid rgba(255,255,255,0.03) }
-  .btn.primary{ background: linear-gradient(90deg,var(--accent-1),var(--accent-2)); color:white; border:none; box-shadow: 0 12px 30px rgba(154,108,255,0.14) }
+    .cta-row { display:flex; gap:12px; align-items:center; flex-wrap:wrap; }
+    .btn {
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      padding:12px 18px;
+      background:var(--accent);
+      color:white;
+      border-radius:12px;
+      text-decoration:none;
+      font-weight:700;
+      box-shadow: 0 10px 30px rgba(91,140,255,0.16);
+    }
+    .btn.secondary {
+      background:transparent;
+      color:var(--accent);
+      border:1px solid rgba(91,140,255,0.12);
+      box-shadow:none;
+      font-weight:600;
+    }
 
-  /* features — tactile clay cards */
-  .features{ margin-top:20px; display:grid; gap:12px; grid-template-columns:1fr; }
-  .feature{
-    border-radius:18px; padding:14px; background: linear-gradient(180deg, rgba(255,255,255,0.015), rgba(255,255,255,0.01));
-    border:1px solid var(--glass-border); box-shadow: var(--shadow-soft);
-  }
-  .feature h4{ margin:0 0 6px; color:white }
-  .feature p{ margin:0; color:var(--muted) }
+    /* Cards for programs */
+    .cards {
+      display:grid;
+      grid-template-columns:repeat(2,1fr);
+      gap:18px;
+      margin-top:18px;
+    }
+    .card {
+      background:var(--card);
+      border-radius:12px;
+      padding:18px;
+      box-shadow:var(--shadow);
+      border:1px solid rgba(15,23,42,0.03);
+    }
+    .card h3 { margin:0 0 6px; font-size:1.05rem; }
+    .card p { margin:0; color:var(--muted); font-size:0.95rem; }
 
-  /* contact card */
-  .contact{
-    margin-top:18px; border-radius:18px; padding:14px; background: linear-gradient(180deg, rgba(255,255,255,0.015), rgba(255,255,255,0.01));
-    border:1px solid var(--glass-border); box-shadow: var(--shadow-soft);
-  }
+    /* About & legal */
+    .meta-list { display:flex; gap:12px; flex-wrap:wrap; }
+    .meta-item {
+      background:linear-gradient(180deg, rgba(91,140,255,0.03), rgba(143,211,255,0.02));
+      padding:12px;
+      border-radius:10px;
+      min-width:180px;
+      box-shadow:none;
+      border:1px solid rgba(91,140,255,0.04);
+    }
 
-  /* mobile bottom quick nav */
-  .bottom-nav{
-    position:fixed; left:12px; right:12px; bottom:12px; z-index:80; display:flex; justify-content:space-between; gap:10px; align-items:center;
-    padding:10px; border-radius:14px; background: linear-gradient(180deg, rgba(4,6,12,0.92), rgba(4,6,12,0.85));
-    border:1px solid rgba(255,255,255,0.03); box-shadow: 0 18px 60px rgba(2,6,23,0.6);
-  }
-  .bottom-nav a{ flex:1; padding:10px 12px; border-radius:10px; text-align:center; color:var(--muted); font-weight:800 }
-  .bottom-nav a.primary{ background:linear-gradient(90deg,var(--accent-1),var(--accent-2)); color:white; box-shadow: 0 10px 30px rgba(154,108,255,0.12) }
+    /* Join / form */
+    .form-card {
+      background: linear-gradient(180deg, #ffffff, #fbfdff);
+      padding:20px;
+      border-radius:12px;
+      box-shadow:var(--shadow);
+      border:1px solid rgba(15,23,42,0.04);
+      max-width:760px;
+    }
+    form .row { display:flex; gap:12px; margin-bottom:12px; }
+    form .row .col { flex:1; }
+    label { display:block; font-weight:600; font-size:0.90rem; margin-bottom:6px; color:#08203a; }
+    input[type="text"], input[type="email"], textarea, select {
+      width:100%;
+      padding:10px 12px;
+      border-radius:8px;
+      border:1px solid rgba(15,23,42,0.08);
+      background:#fff;
+      font-size:0.95rem;
+      color: #0f172a;
+    }
+    textarea { min-height:120px; resize:vertical; }
 
-  footer{ margin-top:28px; padding:28px 12px; color:var(--muted); text-align:center }
+    .small { font-size:0.85rem; color:var(--muted); }
 
-  /* responsive breakpoints */
-  @media (min-width:900px){
-    .hero{ padding:36px; }
-    .hero-grid{ flex-direction:row; align-items:center; }
-    .hero-left{ width:60% }
-    .hero-right{ width:40%; display:flex; justify-content:flex-end; align-items:center; margin-top:0 }
-    .card-sculpt{ margin-top:-60px; transform: translateX(14px) }
-    .features{ grid-template-columns:repeat(2,1fr); gap:18px }
-  }
+    /* Contact / footer */
+    footer {
+      padding:28px 0 80px;
+      border-top:1px solid rgba(15,23,42,0.04);
+      margin-top:20px;
+    }
+    .footer-grid { display:flex; gap:18px; flex-wrap:wrap; align-items:center; justify-content:space-between; }
+    .socials { display:flex; gap:12px; align-items:center; }
 
-  /* keyboard focus */
-  a:focus, button:focus, input:focus, textarea:focus{
-    outline: 3px solid var(--focus); outline-offset:3px; border-radius:10px;
-  }
+    .quick-links a { display:block; text-decoration:none; color:var(--muted); margin-bottom:6px; font-weight:600; }
 
-  /* reduced motion */
-  @media (prefers-reduced-motion: reduce){
-    .clay, .sculpture, .blob, .card-sculpt{ animation: none; transition:none }
-  }
-</style>
+    /* Utilities */
+    .container { max-width:var(--max-width); margin:0 auto; }
+    .section-title { font-size:1.2rem; font-weight:700; margin-bottom:12px; display:flex; align-items:center; gap:12px; }
+    .rule { height:1px; background:linear-gradient(90deg, rgba(15,23,42,0.04), rgba(15,23,42,0.01)); margin:18px 0 6px; border-radius:2px; }
+
+    /* Responsive */
+    @media (max-width:900px){
+      .cards { grid-template-columns:1fr; }
+      .hero { flex-direction:column-reverse; gap:18px; text-align:center; }
+      .hero-right { width:100% }
+      .hero-left { width:100% }
+    }
+    @media (max-width:720px){
+      .nav-links { display:none; }
+      .hamburger { display:inline-flex; }
+      .nav-cta { display:none; }
+      .nav-inner { padding:10px; }
+    }
+
+    /* Mobile nav menu (expanded) */
+    .mobile-menu {
+      display:none;
+      position:absolute;
+      right:18px;
+      top:70px;
+      background:var(--card);
+      border-radius:12px;
+      padding:10px;
+      box-shadow: 0 12px 32px rgba(16,24,40,0.12);
+      border:1px solid rgba(15,23,42,0.04);
+      width:220px;
+    }
+    .mobile-menu a { display:block; padding:10px 12px; border-radius:8px; color:var(--muted); text-decoration:none; font-weight:600; }
+    .mobile-menu a:hover { background:rgba(91,140,255,0.06); color:var(--accent) }
+
+    /* Hidden sections (for SPA style) */
+    .page { display:none; opacity:0; transform:translateY(6px); transition: all .28s ease; }
+    .page.show { display:block; opacity:1; transform:none; }
+
+    /* Small helpers */
+    .note { font-size:0.9rem; color:var(--muted); background:linear-gradient(180deg,rgba(91,140,255,0.03),transparent); padding:8px 12px; border-radius:8px; border:1px solid rgba(91,140,255,0.04); }
+  </style>
 </head>
 <body>
-  <!-- decorative svg sculpture (non-critical) -->
-  <svg class="sculpture" width="0" height="0" aria-hidden="true">
-    <!-- Intentional empty element to reserve z-index for background effects if needed -->
-  </svg>
 
-  <!-- header -->
-  <header class="wrap" role="banner">
-    <a class="brand" href="#home" aria-label="Reflectory home">
-      <img src="logo.png" alt="Reflectory logo" />
-      <div>
+  <!-- Skip link for accessibility -->
+  <a href="#main" class="skip-link" style="position:absolute;left:-9999px;top:auto;overflow:hidden;">Skip to content</a>
+
+  <!-- Header & Navigation Bar -->
+  <header aria-label="Main header">
+    <div class="nav-inner" role="navigation" aria-label="Primary">
+      <a class="brand" href="#" data-target="home" id="brandLink" aria-label="Reflectory Home">
+        <img src="logo.png" alt="Reflectory logo" />
         <div class="title">Reflectory</div>
-        <div class="sub">student-first mentorship</div>
-      </div>
-    </a>
+      </a>
 
-    <nav class="nav" role="navigation" aria-label="Main">
-      <a href="#programs">Programs</a>
-      <a href="#about">About</a>
-      <a href="#join">Join</a>
-      <a href="#contact">Contact</a>
-      <a class="cta" href="#join">Get Started</a>
-    </nav>
+      <nav>
+        <div class="nav-links" id="navLinks">
+          <a href="#home" data-target="home" class="nav-link active" aria-current="page">Home</a>
+          <a href="#about" data-target="about" class="nav-link">About</a>
+          <a href="#programs" data-target="programs" class="nav-link">Programs</a>
+          <a href="#join" data-target="join" class="nav-link">Join Us</a>
+          <a href="#renew" data-target="renew" class="footer-link" class="nav-link">Renew Subscription</a>
+          <a href="#contact" data-target="contact" class="nav-link">Contact</a>
+        </div>
+
+        <!-- CTA: updated Google Form link -->
+        <a href="#renew" data-target="renew" class="btn footer-link" class="btn footer-link">Get Started</a>
+
+        <!-- Hamburger for mobile -->
+        <button class="hamburger" id="hamburger" aria-expanded="false" aria-label="Open menu">
+          <!-- simple icon -->
+          <svg width="22" height="14" viewBox="0 0 22 14" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <rect width="22" height="2" rx="1" y="0" fill="#0f172a" opacity="0.8"/>
+            <rect width="16" height="2" rx="1" y="6" fill="#0f172a" opacity="0.8"/>
+            <rect width="12" height="2" rx="1" y="12" fill="#0f172a" opacity="0.8"/>
+          </svg>
+        </button>
+
+        <div class="mobile-menu" id="mobileMenu" role="menu" aria-hidden="true">
+          <a href="#home" data-target="home" class="mobile-link" role="menuitem">Home</a>
+          <a href="#about" data-target="about" class="mobile-link" role="menuitem">About</a>
+          <a href="#programs" data-target="programs" class="mobile-link" role="menuitem">Programs</a>
+          <a href="#join" data-target="join" class="mobile-link" role="menuitem">Join Us</a>
+          <a href="#contact" data-target="contact" class="mobile-link" role="menuitem">Contact</a>
+          <a href="#privacy" data-target="privacy" class="footer-link" class="mobile-link" role="menuitem" class="footer-link" class="mobile-link">Privacy Policy</a>
+          <a href="#terms" data-target="terms" class="footer-link" class="mobile-link" role="menuitem" class="footer-link" class="mobile-link">Terms &amp; Conditions</a>
+          <a href="#parental" data-target="parental" class="footer-link" class="mobile-link" role="menuitem" class="footer-link" class="mobile-link">Parental Consent</a>
+          <a href="#refund" data-target="refund" class="footer-link" class="mobile-link" role="menuitem" class="footer-link" class="mobile-link">Refund Policy</a>
+          <div style="height:8px"></div>
+          <a href="#renew" data-target="renew" class="btn footer-link" class="btn footer-link">Get Started</a>
+        </div>
+      </nav>
+    </div>
   </header>
 
-  <main id="main" class="wrap" role="main">
-    <!-- HERO -->
-    <section class="hero" id="home" aria-labelledby="homeTitle">
-      <div class="hero-grid">
+  <main id="main" class="site" tabindex="-1">
+    <!-- Home Section -->
+    <section id="homeSection" class="page show" aria-labelledby="homeHeading">
+      <div class="hero">
         <div class="hero-left">
-          <div class="kicker">Reflectory • AI + Human</div>
-          <h1 id="homeTitle">Find the career that reflects who you are</h1>
-          <p class="lead">We blend human mentorship, practical roadmaps and AI-assisted insights — delivered ethically and reviewed by mentors.</p>
+          <div class="section-title"><span>Welcome to</span><strong>Reflectory</strong></div>
+          <h1 id="homeHeading">Empowering every student to make the right career and life decisions</h1>
+          <p class="lead">
+            Empowering every student to make the right career and life decisions with logic, clarity,
+            and emotional support. We blend psychometrics, AI-guided planning and compassionate mentorship
+            to help learners find direction, build skills, and make decisions confidently.
+          </p>
+<div class="note small" style="margin-top:12px;">Reflectory is an MSME-registered mentorship foundation based in Palanpur, Gujarat, India. We comply with India\'s Digital Personal Data Protection Act (DPDP) 2023 and follow ethical, human-supervised mentorship practices.</div>
 
-          <div class="actions" aria-hidden="false">
-            <a class="btn primary" href="#join">Start Profile</a>
-            <button class="btn" id="learnBtn">Explore Programs</button>
+          <div class="cta-row">
+            <!-- Updated Google Form link -->
+            <div class="note small" style="margin-bottom:10px">By applying, you agree to Reflectory\'s <a href="#privacy" data-target="privacy" class="footer-link" class="footer-link" class="mobile-link">Privacy Policy</a> and <a href="#terms" data-target="terms" class="footer-link" class="footer-link" class="mobile-link">Terms &amp; Conditions</a>. If you are under 18, please ensure a parent or guardian has given written consent.</div>
+            <a data-target="renew" class="btn" href="#renew" target="_blank" rel="noopener" aria-label="Get started with Reflectory Google Form">
+              Get Started
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" style="opacity:0.9">
+                <path d="M5 12h14" stroke="white" stroke-width="2" stroke-linecap="round"/>
+                <path d="M13 6l6 6-6 6" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </a>
+
+            <a class="btn secondary" href="#about" data-target="about">Learn more</a>
+          </div>
+
+          <div style="height:12px"></div>
+          <div class="note small">
+            NOTE: For all direct personal mentorship, students under 18 must have explicit parental consent.
+            Reflectory follows strict ethical and legal compliance.
           </div>
         </div>
 
-        <div class="hero-right" aria-hidden="true">
-          <div class="card-sculpt" role="img" aria-label="Reflectory brand art">
-            <!-- clay shapes -->
-            <div class="clay c1" style="transform-origin:center; animation: float1 9s ease-in-out infinite;"></div>
-            <div class="clay c2" style="transform-origin:center; animation: float2 11s ease-in-out infinite;"></div>
-
-            <!-- large logo in center -->
-            <img src="logo-big.png" class="logo-stamp" alt="Reflectory logo" />
-          </div>
-        </div>
-      </div>
-
-      <!-- small features under hero -->
-      <div style="margin-top:18px; display:flex; gap:12px; flex-wrap:wrap; align-items:center;">
-        <div style="flex:1; min-width:180px;" class="tiny">MSME registered • Parental consent required for personalised mentoring under 18</div>
-        <div style="display:flex; gap:10px;">
-          <a class="btn" href="#privacy">Privacy</a>
-          <a class="btn" href="#terms">Terms</a>
+        <div class="hero-right">
+          <img src="logo-big.png" alt="Reflectory large logo banner" class="logo-big" />
         </div>
       </div>
     </section>
 
-    <!-- features grid -->
-    <section class="features" id="programs" aria-label="Programs">
-      <article class="feature" id="f1">
-        <h4>Personal Mentorship</h4>
-        <p>One-on-one plans, weekly action steps, mentor feedback. Human oversight of all AI-generated suggestions.</p>
-      </article>
+    <!-- About Reflectory Section -->
+    <section id="aboutSection" class="page" aria-labelledby="aboutHeading">
+      <div class="section-title"><strong>About Reflectory</strong></div>
+      <div class="rule"></div>
 
-      <article class="feature" id="f2">
-        <h4>Career Clarity Lab</h4>
-        <p>Psychometric + strength mapping, realistic education and internship pathways, portfolio blueprints.</p>
-      </article>
+      <div style="display:flex; gap:20px; align-items:flex-start; flex-wrap:wrap;">
+        <div style="flex:1; min-width:260px;">
+          <h2 id="aboutHeading">Who we are</h2>
+          <p class="muted">
+            Reflectory is a student-first mentorship foundation focused on delivering clear, evidence-based
+            career guidance and practical life skills. We help students understand their strengths, explore
+            options, and build the habits required to transition from uncertainty to confident decision-making.
+          </p>
 
-      <article class="feature" id="f3">
-        <h4>Micro Skill Modules</h4>
-        <p>Short focused lessons — public speaking, portfolio building, productivity and habit design.</p>
-      </article>
+          <h3 style="margin-top:14px">Our Vision</h3>
+          <p class="muted">A future where every student can choose a meaningful career and life path aligned with their abilities and values.</p>
 
-      <article class="feature" id="f4">
-        <h4>Support Circles</h4>
-        <p>Peer cohorts for routine, accountability, and resilience (facilitated by trained mentors; not therapy).</p>
-      </article>
-    </section>
-
-    <!-- Join -->
-    <section id="join" style="margin-top:22px;">
-      <div class="feature">
-        <div style="display:flex; justify-content:space-between; gap:12px; align-items:center; flex-wrap:wrap;">
-          <div>
-            <h4 style="margin:0;color:white">Join Reflectory</h4>
-            <div style="color:var(--muted); margin-top:6px">Students, mentors and contributors welcome. Apply or send a quick interest message.</div>
-          </div>
-
-          <div style="display:flex; gap:8px;">
-            <a class="btn primary" href="https://forms.gle/qhwavJxURvnb2Afz9" target="_blank" rel="noopener">Full application</a>
-            <button class="btn" id="quickOpen">Quick interest</button>
-          </div>
+          <h3 style="margin-top:10px">Our Mission</h3>
+          <p class="muted">To provide accessible, ethical, and high-quality mentorship combining human empathy with AI-assisted planning.</p>
         </div>
 
-        <div id="quickPanel" style="display:none; margin-top:12px;">
-          <form id="quickForm" style="display:grid; gap:8px;">
-            <input name="name" placeholder="Your name" required style="padding:12px; border-radius:12px; background:transparent; border:1px solid var(--glass-border); color:var(--muted)">
-            <input name="email" type="email" placeholder="Email" required style="padding:12px; border-radius:12px; background:transparent; border:1px solid var(--glass-border); color:var(--muted)">
-            <select name="role" required style="padding:12px; border-radius:12px; background:transparent; border:1px solid var(--glass-border); color:var(--muted)">
-              <option value="">Role interest</option><option>Student</option><option>Peer Mentor</option><option>Content Creator</option><option>Volunteer</option>
-            </select>
-            <textarea name="message" placeholder="Short message (optional)" style="padding:12px; border-radius:12px; background:transparent; border:1px solid var(--glass-border); color:var(--muted)"></textarea>
-            <div style="display:flex; gap:8px;">
-              <button type="submit" class="btn primary" style="flex:1">Send</button>
-              <button type="button" id="quickCancel" class="btn">Cancel</button>
+        <div style="flex:1; min-width:260px;">
+          <h3>Values</h3>
+          <ul class="muted" style="margin-top:6px; padding-left:18px;">
+            <li><strong>Clarity:</strong> Data-informed and transparent guidance.</li>
+            <li><strong>Compassion:</strong> Emotional safety and peer support.</li>
+            <li><strong>Ethics:</strong> Prioritise consent, privacy, and legal compliance.</li>
+            <li><strong>Growth:</strong> Skill building and lifelong learning focus.</li>
+          </ul>
+
+          <div style="height:12px"></div>
+          <div class="meta-list">
+            <div class="meta-item">
+              <strong>Legal & Ethical</strong>
+              <p class="small" style="margin-top:6px">We do not provide individual consulting to minors (under 18) without parental consent. We comply with applicable rules and maintain confidentiality.</p>
             </div>
-            <div id="quickFeedback" style="font-size:13px; color:var(--muted); display:none"></div>
-          </form>
+<p class="small" style="margin-top:8px">Reflectory uses AI tools such as ChatGPT to help mentors prepare schedules and insights. All AI content is reviewed by human mentors before sharing with students. No automated decisions or sensitive data storage is done using AI.</p>
+
+            <div class="meta-item">
+              <strong>Evidence-Based</strong>
+              <p class="small" style="margin-top:6px">We use psychometric inputs, structured interviews, and AI-assisted planning tools to guide recommendations.</p>
+            </div>
+          </div>
         </div>
       </div>
     </section>
 
-    <!-- contact -->
-    <section id="contact" class="contact" aria-label="Contact">
-      <h4 style="margin:0 0 8px; color:white">Contact</h4>
-      <p style="margin:0 0 12px; color:var(--muted)">Email: <a href="mailto:reflectory.in@gmail.com">reflectory.in@gmail.com</a> • IG: <a href="https://www.instagram.com/reflectory.in/" target="_blank" rel="noopener">@reflectory.in</a></p>
+    <!-- Programs Section -->
+    <section id="programsSection" class="page" aria-labelledby="programsHeading">
+      <div class="section-title"><strong>Programs</strong></div>
+      <div class="rule"></div>
 
-      <form id="contactForm" style="display:grid; gap:8px;">
-        <input name="cname" placeholder="Your name" required style="padding:12px; border-radius:12px; background:transparent; border:1px solid var(--glass-border); color:var(--muted)">
-        <input name="cemail" type="email" placeholder="Email" required style="padding:12px; border-radius:12px; background:transparent; border:1px solid var(--glass-border); color:var(--muted)">
-        <textarea name="cmessage" placeholder="Message" required style="padding:12px; border-radius:12px; background:transparent; border:1px solid var(--glass-border); color:var(--muted)"></textarea>
-        <div style="display:flex; gap:8px;">
-          <button type="submit" class="btn primary" style="flex:1">Send</button>
-          <button type="button" id="clearContact" class="btn">Clear</button>
-        </div>
-        <div id="contactFeedback" style="font-size:13px; color:var(--muted); display:none"></div>
-      </form>
+      <p class="muted">Reflectory offers a set of carefully designed programs to address career clarity, practical skills, and emotional resilience.</p>
+
+      <div class="cards" style="margin-top:14px;">
+        <article class="card" aria-labelledby="p1">
+          <h3 id="p1">Personal Mentorship</h3>
+          <p>One-on-one mentorship for mature students (18+). Tailored sessions focusing on decision-making, goal setting and progress tracking. <strong>Note:</strong> parental consent required for those under 18.</p>
+        </article>
+
+        <article class="card" aria-labelledby="p2">
+          <h3 id="p2">Career Clarity</h3>
+          <p>Psychometric assessments combined with AI-based planning to map career options, course choices, and realistic pathways.</p>
+        </article>
+
+        <article class="card" aria-labelledby="p3">
+          <h3 id="p3">Skill Development</h3>
+          <p>Short courses and guided practice on productivity, communication, public speaking, and disciplined habit formation.</p>
+        </article>
+
+        <article class="card" aria-labelledby="p4">
+          <h3 id="p4">Emotional Support Circles</h3>
+          <p>Peer-led group conversations for emotional resilience and perspective-sharing. These are supportive spaces, not therapy — facilitators are trained peer mentors.</p>
+        </article>
+      </div>
+<div class="note small" style="margin-top:14px">Reflectory provides mentorship and educational guidance only. We do not offer therapy, medical, legal, or financial advice. Individual results may vary based on effort and participation.</div>
+
+      <div style="margin-top:18px;">
+        <div class="note small" style="margin-bottom:10px">By applying, you agree to Reflectory\'s <a href="#privacy" data-target="privacy" class="footer-link" class="footer-link" class="mobile-link">Privacy Policy</a> and <a href="#terms" data-target="terms" class="footer-link" class="footer-link" class="mobile-link">Terms &amp; Conditions</a>. If you are under 18, please ensure a parent or guardian has given written consent.</div>
+        <a class="btn" href="#join" data-target="join">Become a member</a>
+        <a class="btn secondary" href="#contact" data-target="contact">Contact us</a>
+      </div>
     </section>
 
-    <footer>
-      <div style="max-width:var(--maxw); margin:0 auto; padding:8px;">
-        <div style="font-weight:800; color:white">Reflectory</div>
-        <div style="font-size:13px; color:var(--muted)">© <span id="year"></span> Reflectory Foundation • Palanpur • MSME • reflectory.in@gmail.com</div>
+    <!-- Join Us / Become a Member Section -->
+    <section id="joinSection" class="page" aria-labelledby="joinHeading">
+      <div class="section-title"><strong>Join Reflectory</strong></div>
+      <div class="rule"></div>
+
+      <div style="display:flex; gap:20px; align-items:flex-start; flex-wrap:wrap;">
+        <div style="flex:1; min-width:280px;">
+          <h2 id="joinHeading">Who can join our team</h2>
+          <p class="muted">We welcome motivated students and early-career mentors who share our values. Team roles may include Peer Mentor, Content Creator, Program Coordinator, and Research Associate.</p>
+
+          <h3 style="margin-top:10px">Age & Consent Rules</h3>
+          <p class="muted">Applicants 18 and older can apply for personal mentorship roles and direct counseling. Applicants under 18 may participate in peer or volunteer roles but cannot provide individual consulting without parental approval.</p>
+
+          <div style="height:12px"></div>
+          <p class="small">To apply, click the button below and fill the membership application form.</p>
+          <div style="height:10px"></div>
+          <div class="note small" style="margin-bottom:10px">By applying, you agree to Reflectory\'s <a href="#privacy" data-target="privacy" class="footer-link" class="footer-link" class="mobile-link">Privacy Policy</a> and <a href="#terms" data-target="terms" class="footer-link" class="footer-link" class="mobile-link">Terms &amp; Conditions</a>. If you are under 18, please ensure a parent or guardian has given written consent.</div>
+          <a class="btn" href="https://forms.gle/qhwavJxURvnb2Afz9" target="_blank" rel="noopener">Apply Now</a>
+        </div>
+
+        <div style="flex:1; min-width:280px;">
+          <div class="form-card">
+            <h3 style="margin-top:0">Quick interest form</h3>
+            <p class="small">This is a quick internal contact form. For full membership, use the "Apply Now" button above.</p>
+
+            <form id="quickJoinForm" aria-label="Quick join form">
+              <div class="row">
+                <div class="col">
+                  <label for="qName">Name</label>
+                  <input id="qName" name="name" type="text" required placeholder="Your full name" />
+                </div>
+                <div class="col">
+                  <label for="qEmail">Email</label>
+                  <input id="qEmail" name="email" type="email" required placeholder="you@example.com" />
+                </div>
+              </div>
+
+              <label for="qRole">Role interest</label>
+              <select id="qRole" name="role" required>
+                <option value="">Select...</option>
+                <option>Peer Mentor</option>
+                <option>Content Creator</option>
+                <option>Program Coordinator</option>
+                <option>Volunteer / Other</option>
+              </select>
+
+              <label for="qMsg">Short message</label>
+              <textarea id="qMsg" name="message" placeholder="Tell us why you'd like to join"></textarea>
+
+              <div style="height:12px"></div>
+              <div style="display:flex; gap:8px; align-items:center;">
+                <button type="submit" class="btn">Submit</button>
+                <div class="small muted">We will respond within 7 business days.</div>
+              </div>
+            </form>
+
+            <div id="quickJoinFeedback" class="small" style="display:none; margin-top:10px;"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact Us Section -->
+    <section id="contactSection" class="page" aria-labelledby="contactHeading">
+      <div class="section-title"><strong>Contact Us</strong></div>
+      <div class="rule"></div>
+
+      <div style="display:flex; gap:20px; flex-wrap:wrap; align-items:flex-start;">
+        <div style="flex:1; min-width:260px;">
+          <h3 id="contactHeading">Get in touch</h3>
+          <p class="muted">Email us for queries, program info, or partnership opportunities.</p>
+
+          <p style="margin-top:12px;">
+            <strong>Email:</strong> <a href="mailto:reflectory.in@gmail.com">reflectory.in@gmail.com</a><br/>
+            <strong>Instagram:</strong> <a href="https://www.instagram.com/reflectory.in/?utm_source=ig_web_button_share_sheet" target="_blank" rel="noopener">@reflectory.in</a><br/>
+            <strong>Location:</strong> Palanpur, Gujarat, India
+          </p>
+
+          <div style="height:10px"></div>
+          <div class="note small">
+            We aim for safe and ethical interactions. For minors under 18, parental involvement is required for personalized services.
+          </div>
+        </div>
+
+        <div style="flex:1; min-width:320px;">
+          <div class="form-card">
+            <h3 style="margin-top:0">Send us a message</h3>
+
+            <form id="contactForm" aria-label="Contact form">
+              <label for="cName">Name</label>
+              <input id="cName" name="name" type="text" required placeholder="Your name" />
+
+              <label for="cEmail">Email</label>
+              <input id="cEmail" name="email" type="email" required placeholder="you@example.com" />
+
+              <label for="cMessage">Message</label>
+              <textarea id="cMessage" name="message" required placeholder="How can we help?"></textarea>
+
+              <div style="height:10px"></div>
+              <div style="display:flex; gap:8px; align-items:center;">
+                <button type="submit" class="btn">Send message</button>
+                <button type="button" class="btn secondary" id="contactClear">Clear</button>
+              </div>
+            </form>
+
+            <div id="contactFeedback" class="small" style="display:none; margin-top:12px;"></div>
+            <div style="margin-top:10px" class="small muted">Or email directly at <a href="mailto:reflectory.in@gmail.com">reflectory.in@gmail.com</a></div>
+          </div>
+        </div>
+      </div>
+
+          <div style="height:14px"></div>
+          <div class="note small">
+            <strong>Grievance Officer (DPDP 2023 Compliance)</strong><br/>
+            Name: Karan Rajput<br/>
+            Email: reflectory.in@gmail.com<br/>
+            Location: Palanpur, Gujarat, India<br/>
+            Response Time: Within 7 business days
+          </div>
+    </section>
+
+
+    <section id="privacy" class="page" aria-labelledby="privacyHeading">
+      <div class="section-title"><strong>Privacy Policy</strong></div>
+      <div class="rule"></div>
+      <div style="max-width:900px; margin:0 auto; padding:0 10px;">
+        <h2 id="privacyHeading" style="margin-top:0">Privacy Policy</h2>
+        <p><strong>Effective Date:</strong> November 2025</p>
+        <p>Reflectory is a student-first mentorship foundation based in Palanpur, Gujarat, India. We are committed to protecting your privacy and handling all personal information responsibly and transparently, in full compliance with the Digital Personal Data Protection Act, 2023 (DPDP 2023).</p>
+        <h3>1️⃣ Who We Are</h3>
+        <p>Reflectory is an MSME-registered mentorship foundation providing ethical, evidence-based guidance and life skills for students. Our programs combine human mentorship with AI-assisted insights — always reviewed and approved by mentors before sharing with students.</p>
+        <h3>2️⃣ What Data We Collect</h3>
+        <ul>
+          <li>Name, age, contact details (email, phone)</li>
+          <li>Educational background and academic preferences</li>
+          <li>Responses to mentoring forms, questionnaires, or feedback</li>
+          <li>Parental or guardian details (for minors under 18)</li>
+          <li>Communication records (emails, chat history, or form submissions)</li>
+        </ul>
+        <h3>3️⃣ How We Use Your Data</h3>
+        <p>Your personal information is used only for providing mentorship, improving programs, responding to queries, and complying with legal requirements. We do not sell, rent, or share your data for commercial gain.</p>
+        <h3>4️⃣ AI Tools & Human Oversight</h3>
+        <p>Reflectory uses AI tools such as ChatGPT to assist mentors with insights and scheduling. All AI-generated content is reviewed by a human mentor and not used for automated decision-making.</p>
+        <h3>5️⃣ Data Retention & Deletion</h3>
+        <p>We retain personal data for up to 12 months after program completion; thereafter data is deleted or anonymized unless you request otherwise.</p>
+        <h3>6️⃣ Contact</h3>
+        <p>For data requests, contact: <strong>reflectory.in@gmail.com</strong></p>
+        <p style="margin-top:24px; font-size:0.9rem;">Last Updated: November 2025</p>
+      </div>
+    </section>
+
+
+
+    <section id="terms" class="page" aria-labelledby="termsHeading">
+      <div class="section-title"><strong>Terms &amp; Conditions</strong></div>
+      <div class="rule"></div>
+      <div style="max-width:900px; margin:0 auto; padding:0 10px;">
+        <h2 id="termsHeading" style="margin-top:0">Terms &amp; Conditions</h2>
+        <p>These Terms and Conditions govern the use of Reflectory's services. Reflectory provides mentorship and educational guidance; it does not provide therapy, medical, legal, or professional financial advice. Use of our services indicates acceptance of these terms. Full legal terms will be supplied by our legal advisor.</p>
+        <p>Contact: <strong>reflectory.in@gmail.com</strong></p>
+        <p style="margin-top:24px; font-size:0.9rem;">Last Updated: November 2025</p>
+      </div>
+    </section>
+
+
+
+    <section id="parental" class="page" aria-labelledby="parentalHeading">
+      <div class="section-title"><strong>Parental Consent</strong></div>
+      <div class="rule"></div>
+      <div style="max-width:900px; margin:0 auto; padding:0 10px;">
+        <h2 id="parentalHeading" style="margin-top:0">Parental Consent</h2>
+        <p>Reflectory does not provide individual consulting to minors (under 18) without explicit parental or guardian consent. Parents or guardians must complete the Parental Consent Form before any personalized mentorship interaction begins. The Parental Consent Form link will be provided when available.</p>
+        <p>Contact: <strong>reflectory.in@gmail.com</strong></p>
+        <p style="margin-top:24px; font-size:0.9rem;">Last Updated: November 2025</p>
+      </div>
+    </section>
+
+
+
+    <section id="refund" class="page" aria-labelledby="refundHeading">
+      <div class="section-title"><strong>Refund Policy</strong></div>
+      <div class="rule"></div>
+      <div style="max-width:900px; margin:0 auto; padding:0 10px;">
+        <h2 id="refundHeading" style="margin-top:0">Refund Policy</h2>
+        <p>Any refund policy (if applicable) will be communicated at the time of purchase or enrollment. For free or voluntary applications, no fee is refundable by default. Please contact us for case-specific queries.</p>
+        <p>Contact: <strong>reflectory.in@gmail.com</strong></p>
+        <p style="margin-top:24px; font-size:0.9rem;">Last Updated: November 2025</p>
+      </div>
+    </section>
+
+
+    <!-- Footer -->
+    <section id="renew" class="page" aria-labelledby="renewHeading">
+      <div class="section-title"><strong>Renew Your Reflectory Subscription</strong></div>
+      <div class="rule"></div>
+      <div style="max-width:900px; margin:0 auto; padding:0 10px;">
+        <h2 id="renewHeading">Renew Your Reflectory Subscription</h2>
+        <p>Your Reflectory subscription has ended.<br>
+        To continue receiving sessions, reports, and AI tools, please complete your monthly renewal below.</p>
+
+        <h3>Step 1 – Choose Payment Method</h3>
+        <p>
+          <a class="btn" href="https://reflectory.in/pay" target="_blank" rel="noopener">Pay Online (Razorpay)</a>
+        </p>
+        <p style="text-align:center; margin:8px 0">or</p>
+        <p><button class="btn secondary" disabled>Pay Offline (Cash / UPI)</button></p>
+        <p class="small">Available only for approved students</p>
+
+        <h3>Step 2 – After Payment</h3>
+        <p>Once payment is completed, click the button below to open the Renewal Confirmation Form. In the form, enter your name, registered email, and transaction number or upload a screenshot of the payment.</p>
+        <p><a class="btn" href="https://forms.gle/your-form-link" target="_blank" rel="noopener">Open Renewal Form</a></p>
+
+        <h3>Step 3 – Legal / Policy Information</h3>
+        <p>Reflectory is registered under MSME India. Until official business banking integration, renewals may be collected through authorized personal accounts managed by the founder. All transactions are manually verified and securely recorded. No refunds are applicable once renewal is confirmed.</p>
+        <p style="margin-top:24px; font-size:0.9rem;">Last Updated: November 2025</p>
+      </div>
+    
+    <div style="margin-top:20px;">
+      <a href="https://forms.gle/vxdw2McpZFj57dRf7" target="_blank" class="btn">Verify Payment & Renewal</a>
+      <p><strong>Important:<br>
+      After completing your subscription payment, you must fill the Verify Payment & Renewal form.<br><br>
+      This form is required to:<br>
+      • Confirm your payment<br>
+      • Match your transaction ID<br>
+      • Update your renewal status in our system<br><br>
+      If this form is not submitted, your renewal will NOT be considered valid, even if the payment is done.</strong></p>
+    </div>
+    </section>
+
+<footer>
+      <div class="footer-grid container">
+        <div style="display:flex; gap:12px; align-items:center;">
+          <img src="logo.png" alt="Reflectory logo" width="44" height="44" style="border-radius:8px;"/>
+          <div>
+            <div style="font-weight:700">Reflectory</div>
+            <div class="small muted">Empowering student decisions • Palanpur, Gujarat</div>
+          </div>
+        </div>
+
+        <div class="quick-links" style="text-align:right;">
+          <div style="display:flex; gap:18px; justify-content:flex-end;">
+            <div>
+              <div class="small" style="font-weight:700">Quick links</div>
+              <a href="#home" data-target="home" class="footer-link">Home</a>
+              <a href="#programs" data-target="programs" class="footer-link">Programs</a>
+              <a href="#privacy" data-target="privacy" class="footer-link" class="footer-link" class="footer-link" class="mobile-link">Privacy Policy</a>
+            </div>
+
+            <div>
+              <div class="small" style="font-weight:700">Connect</div>
+              <a href="mailto:reflectory.in@gmail.com">Email</a>
+              <a href="https://www.instagram.com/reflectory.in/?utm_source=ig_web_button_share_sheet" target="_blank" rel="noopener">Instagram</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div style="max-width:var(--max-width); margin:18px auto 0; padding:0 20px; display:flex; flex-direction:column; gap:12px;">
+        <div style="display:flex; justify-content:space-between; align-items:center; gap:12px;">
+          <div class="small muted">© <span id="year"></span> Reflectory. All rights reserved.</div>
+          <div class="socials">
+            <!-- Placeholder social icons -->
+            <a href="#" aria-label="Instagram (placeholder)" title="Instagram" style="text-decoration:none;color:var(--muted);font-weight:700">IG</a>
+            <a href="#" aria-label="Twitter (placeholder)" title="Twitter" style="text-decoration:none;color:var(--muted);font-weight:700">TW</a>
+            <a href="#" aria-label="LinkedIn (placeholder)" title="LinkedIn" style="text-decoration:none;color:var(--muted);font-weight:700">IN</a>
+          </div>
+        </div>
+
+        <!-- Terms & Conditions short clause added as requested -->
+        <div style="border-top:1px solid rgba(15,23,42,0.04); padding-top:12px;">
+          <div class="small muted" style="margin-bottom:6px; font-weight:700;">Terms &amp; Conditions (short)</div>
+          <div class="small muted" style="line-height:1.4;">
+            Reflectory provides mentorship and educational guidance. This is not therapy or professional financial/legal advice. We do not guarantee specific results. Participants under 18 must have a parent/guardian consent. By using our services you agree to these terms.
+          </div>
+
+          <!-- Additional required legal bullets (minimal) -->
+          <div class="small muted" style="margin-top:10px; line-height:1.4;">
+            <strong>Service scope:</strong> Our services are mentorship, career guidance and skill-building programs — not therapy, medical, legal, or professional financial advice.<br/>
+            <strong>Refund policy:</strong> Any refund policy (if applicable) will be communicated at the time of purchase/enrollment. For free/voluntary applications there is no fee refundable by default.<br/>
+            <strong>Minors clause:</strong> Participants under 18 must have explicit consent from a parent or guardian. We will not provide individual counseling to minors without parental consent.<br/>
+            <strong>Liability disclaimer:</strong> To the fullest extent permitted by law, Reflectory is not liable for indirect, incidental, special or consequential damages, nor for reliance on program content. We provide guidance and resources but do not guarantee outcomes.
+          </div>
+        </div>
       </div>
     </footer>
-  </main>
 
-  <!-- sticky bottom nav (mobile) -->
-  <nav class="bottom-nav" aria-label="Quick actions" role="navigation">
-    <a href="#home">Home</a>
-    <a href="#programs">Programs</a>
-    <a class="primary" href="#join">Get Started</a>
-  </nav>
+    <footer style="text-align:center; font-size:14px; padding:15px; margin-top:20px;">
+      © 2025 Reflectory Foundation | MSME Registered | Palanpur, Gujarat <br>
+      <a href="#privacy" data-target="privacy" class="footer-link" class="footer-link" class="mobile-link">Privacy Policy</a> |
+      <a href="#terms" data-target="terms" class="footer-link" class="footer-link" class="mobile-link">Terms &amp; Conditions</a> |
+      <a href="#parental" data-target="parental" class="footer-link" class="footer-link" class="mobile-link">Parental Consent</a> |
+      <a href="#refund" data-target="refund" class="footer-link" class="footer-link" class="mobile-link">Refund Policy</a> <br>
+      Contact: reflectory.in@gmail.com | Instagram: <a href="https://www.instagram.com/reflectory.in/?utm_source=ig_web_button_share_sheet">@reflectory.in</a>
+    </footer>
 
-<script>
-  /***** interactions (no backend) *****/
-  document.getElementById('year').textContent = new Date().getFullYear();
 
-  // floating animation for clay elements
-  (function(){
-    // small JS nudge to create slightly different delays
-    const c1 = document.querySelector('.clay.c1');
-    const c2 = document.querySelector('.clay.c2');
-    if(c1) c1.animate([{transform:'translateY(0) rotate(-10deg)'},{transform:'translateY(-12px) rotate(-8deg)'},{transform:'translateY(0) rotate(-10deg)'}], {duration:9000, iterations:Infinity, easing:'cubic-bezier(.2,.8,.2,.9)'});
-    if(c2) c2.animate([{transform:'translateY(0) rotate(12deg)'},{transform:'translateY(10px) rotate(14deg)'},{transform:'translateY(0) rotate(12deg)'}], {duration:11000, iterations:Infinity, easing:'cubic-bezier(.2,.8,.2,.9)'});
-  })();
+  
+    
 
-  // Quick form (mailto fallback)
-  (function(){
-    const quickOpen = document.getElementById('quickOpen');
-    const quickPanel = document.getElementById('quickPanel');
-    const quickCancel = document.getElementById('quickCancel');
-    const quickForm = document.getElementById('quickForm');
-    const quickFeedback = document.getElementById('quickFeedback');
+</main>
 
-    quickOpen?.addEventListener('click', ()=>{ quickPanel.style.display='block'; quickPanel.scrollIntoView({behavior:'smooth'}); });
-    quickCancel?.addEventListener('click', ()=>{ quickPanel.style.display='none'; });
+  <script>
+    // Single-file multi-page behavior
+    (function(){
+      const pages = {
+  renew: document.getElementById('renew'),
+home: document.getElementById('homeSection'),
+        about: document.getElementById('aboutSection'),
+        programs: document.getElementById('programsSection'),
+        join: document.getElementById('joinSection'),
+        contact: document.getElementById('contactSection')
+  ,privacy: document.getElementById('privacy')
+  ,terms: document.getElementById('terms')
+  ,parental: document.getElementById('parental')
+  ,refund: document.getElementById('refund')
+};
 
-    quickForm?.addEventListener('submit', function(e){
-      e.preventDefault();
-      const name=this.name.value.trim(), email=this.email.value.trim(), role=this.role.value, msg=this.message.value.trim();
-      if(!name||!email||!role){ quickFeedback.style.display='block'; quickFeedback.style.color='crimson'; quickFeedback.textContent='Please fill name, email and role.'; return; }
-      const subj = encodeURIComponent('Reflectory quick interest: '+name);
-      const body = encodeURIComponent('Name: '+name+'\\nEmail: '+email+'\\nRole: '+role+'\\n\\n'+msg);
-      window.location.href = 'mailto:reflectory.in@gmail.com?subject='+subj+'&body='+body;
-      quickFeedback.style.display='block'; quickFeedback.style.color='limegreen'; quickFeedback.textContent='Opening your email client...';
-      this.reset();
-      setTimeout(()=> quickPanel.style.display='none',800);
-    });
+      const navLinks = Array.from(document.querySelectorAll('.nav-link'));
+      const mobileLinks = Array.from(document.querySelectorAll('.mobile-link'));
+      const brandLink = document.getElementById('brandLink');
+      const hamburger = document.getElementById('hamburger');
+      const mobileMenu = document.getElementById('mobileMenu');
+      const navCTA = document.getElementById('navCTA');
 
-    // contact form -> mailto
-    const contactForm = document.getElementById('contactForm');
-    const contactFB = document.getElementById('contactFeedback');
-    contactForm?.addEventListener('submit', function(e){
-      e.preventDefault();
-      const n=this.cname.value.trim(), em=this.cemail.value.trim(), m=this.cmessage.value.trim();
-      if(!n||!em||!m){ contactFB.style.display='block'; contactFB.style.color='crimson'; contactFB.textContent='Please complete the form.'; return; }
-      const subj = encodeURIComponent('Reflectory contact: '+n);
-      const body = encodeURIComponent('Name: '+n+'\\nEmail: '+em+'\\n\\n'+m);
-      window.location.href = 'mailto:reflectory.in@gmail.com?subject='+subj+'&body='+body;
-      contactFB.style.display='block'; contactFB.style.color='limegreen'; contactFB.textContent='Opening your email client...';
-      this.reset();
-    });
-    document.getElementById('clearContact')?.addEventListener('click', ()=>{ contactForm.reset(); contactFB.style.display='none'; });
-  })();
+      // Helper: show a page by key
+      function showPage(key, pushState = true) {
+        // hide all
+        Object.values(pages).forEach(el => {
+          el.classList.remove('show');
+          el.setAttribute('aria-hidden', 'true');
+        });
 
-  // smooth internal links
-  document.querySelectorAll('a[href^="#"]').forEach(a=>{
-    a.addEventListener('click', function(e){
-      const id = this.getAttribute('href').slice(1);
-      if(!id) return;
-      const el = document.getElementById(id);
-      if(el){ e.preventDefault(); el.scrollIntoView({behavior:'smooth', block:'start'}); }
-    });
-  });
+        // show chosen
+        const target = pages[key];
+        if (target) {
+          target.classList.add('show');
+          target.setAttribute('aria-hidden', 'false');
+          // Update nav active state
+          navLinks.forEach(a => a.classList.toggle('active', a.dataset.target === key));
+          // scroll to top of section for keyboard/screen reader
+          target.scrollIntoView({behavior:'smooth', block:'start'});
+          // update history
+          if (pushState) {
+            history.pushState({page:key}, '', '#' + key);
+          }
+        }
+      }
 
-  // respect reduced motion
-  if(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches){
-    document.querySelectorAll('.clay').forEach(n => n.style.animation = 'none');
-  }
-</script>
+      // Attach click handlers for nav links
+      navLinks.forEach(a => {
+        a.addEventListener('click', (e) => {
+          e.preventDefault();
+          const key = a.dataset.target;
+          showPage(key);
+        });
+      });
+
+      mobileLinks.forEach(a => {
+        a.addEventListener('click', (e) => {
+          e.preventDefault();
+          const key = a.dataset.target;
+          showPage(key);
+          toggleMobileMenu(false);
+        });
+      });
+
+      // Footer links handling (so footer Quick Links behave like nav links)
+      const footerLinks = Array.from(document.querySelectorAll('.footer-link'));
+      footerLinks.forEach(a => {
+        a.addEventListener('click', (e) => {
+          e.preventDefault();
+          const key = a.dataset.target;
+          if (pages[key]) showPage(key);
+        });
+      });
+
+      brandLink.addEventListener('click', (e) => {
+        e.preventDefault();
+        showPage('home');
+      });
+
+      // Mobile menu toggle
+      function toggleMobileMenu(force) {
+        const isOpen = mobileMenu.style.display === 'block';
+        let open = (typeof force === 'boolean') ? force : !isOpen;
+        mobileMenu.style.display = open ? 'block' : 'none';
+        mobileMenu.setAttribute('aria-hidden', open ? 'false' : 'true');
+        hamburger.setAttribute('aria-expanded', open ? 'true' : 'false');
+      }
+      hamburger.addEventListener('click', () => toggleMobileMenu());
+
+      // Close mobile menu when clicking outside
+      document.addEventListener('click', (e) => {
+        if (!mobileMenu.contains(e.target) && !hamburger.contains(e.target)) {
+          toggleMobileMenu(false);
+        }
+      });
+
+      // Handle back/forward
+      window.addEventListener('popstate', (e) => {
+        const page = (e.state && e.state.page) ? e.state.page : (location.hash ? location.hash.slice(1) : 'home');
+        if (pages[page]) showPage(page, false);
+      });
+
+      // On load: pick hash or home
+      const initial = location.hash ? location.hash.slice(1) : 'home';
+      if (pages[initial]) {
+        showPage(initial, false);
+      } else {
+        showPage('home', false);
+      }
+
+      // Set footer year
+      document.getElementById('year').textContent = new Date().getFullYear();
+
+      // Quick Join Form handling (client-side only)
+      document.getElementById('quickJoinForm').addEventListener('submit', function(e){
+        e.preventDefault();
+        const name = this.name.value.trim();
+        const email = this.email.value.trim();
+        const role = this.role.value;
+        const msg = this.message.value.trim();
+
+        // Minimal validation
+        if (!name || !email || !role) {
+          const fb = document.getElementById('quickJoinFeedback');
+          fb.style.display='block';
+          fb.textContent = 'Please fill name, email and role to proceed.';
+          fb.style.color = 'crimson';
+          return;
+        }
+
+        // Open user's mail client with prefilled content (fallback)
+        const subject = encodeURIComponent('Reflectory - Quick join request from ' + name);
+        const body = encodeURIComponent('Name: ' + name + '\nEmail: ' + email + '\nRole: ' + role + '\n\nMessage:\n' + msg);
+        window.location.href = 'mailto:reflectory.in@gmail.com' + subject + '&body=' + body;
+
+        const fb = document.getElementById('quickJoinFeedback');
+        fb.style.display='block';
+        fb.style.color = 'green';
+        fb.textContent = 'Opening your email client to send the application. If nothing opens, please email reflectory.in@gmail.com directly.';
+        this.reset();
+      });
+
+      // Contact form handling (client-side)
+      document.getElementById('contactForm').addEventListener('submit', function(e){
+        e.preventDefault();
+        const name = this.name.value.trim();
+        const email = this.email.value.trim();
+        const message = this.message.value.trim();
+
+        if (!name || !email || !message) {
+          const fb = document.getElementById('contactFeedback');
+          fb.style.display='block'; fb.style.color='crimson';
+          fb.textContent = 'Please fill all required fields.';
+          return;
+        }
+
+        // Use mailto to open user's email client with content
+        const subject = encodeURIComponent('Reflectory - Contact from ' + name);
+        const body = encodeURIComponent('Name: ' + name + '\nEmail: ' + email + '\n\nMessage:\n' + message);
+        window.location.href = 'mailto:reflectory.in@gmail.com' + subject + '&body=' + body;
+
+        const fb = document.getElementById('contactFeedback');
+        fb.style.display='block'; fb.style.color='green';
+        fb.textContent = 'Opening your email client to send the message. If nothing opens, email reflectory.in@gmail.com.';
+        this.reset();
+      });
+
+      // Clear contact form
+      document.getElementById('contactClear').addEventListener('click', function(){
+        const f = document.getElementById('contactForm');
+        f.reset();
+        const fb = document.getElementById('contactFeedback');
+        fb.style.display='none';
+      });
+
+      // Improve keyboard access: close mobile menu with Escape
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') toggleMobileMenu(false);
+      });
+
+      // Developer note: highlight navCTA if left as placeholder (not needed here)
+      if (navCTA && navCTA.href.includes('REPLACE_WITH_YOUR_FORM')) {
+        navCTA.style.boxShadow = '0 10px 30px rgba(91,140,255,0.18)';
+      }
+    })();
+  </script>
 </body>
 </html>
