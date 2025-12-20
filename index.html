@@ -254,36 +254,7 @@
 
     .quick-links a { display:block; text-decoration:none; color:var(--muted); margin-bottom:6px; font-weight:600; }
 
-    /* Utilities */
-    .container { max-width:var(--max-width); margin:0 auto; }
-    .section-title { font-size:1.2rem; font-weight:700; margin-bottom:12px; display:flex; align-items:center; gap:12px; }
-    .rule { height:1px; background:linear-gradient(90deg, rgba(15,23,42,0.04), rgba(15,23,42,0.01)); margin:18px 0 6px; border-radius:2px; }
-    /* Utilities */
-.container { max-width:var(--max-width); margin:0 auto; }
-.section-title { font-size:1.2rem; font-weight:700; margin-bottom:12px; display:flex; align-items:center; gap:12px; }
-.rule { height:1px; background:linear-gradient(90deg, rgba(15,23,42,0.04), rgba(15,23,42,0.01)); margin:18px 0 6px; border-radius:2px; }
-
-/* Responsive video embed */
-.video-wrapper {
-  position: relative;
-  width: 100%;
-  max-width: 720px;
-  aspect-ratio: 9 / 16;
-  margin-top: 16px;
-  border-radius: 12px;
-  overflow: hidden;
-  box-shadow: var(--shadow);
-  background: #000;
-}
-
-.video-wrapper iframe {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  border: 0;
-}
-
+  
    /* Responsive */
     @media (max-width:900px){
       .cards { grid-template-columns:1fr; }
@@ -333,34 +304,7 @@
       <a class="brand" href="#" data-target="home" id="brandLink" aria-label="Reflectory Home">
         <img src="logo.png" alt="Reflectory logo" />
         <div class="title">Reflectory</div>
-        <!-- How to Join Reflectory (Video Section) -->
-<section aria-labelledby="howToJoinHeading" style="margin-top:32px;">
-  <div class="section-title">
-    <strong id="howToJoinHeading">How to Join Reflectory</strong>
-  </div>
-  <div class="rule"></div>
-
-  <p class="muted" style="max-width:720px;">
-    This short video explains the complete process of joining Reflectory as a client —
-    from understanding our mentorship model to submitting your application.
-  </p>
-
-  <div class="video-wrapper" aria-label="How to join Reflectory video">
-    <iframe
-      src="https://www.youtube.com/embed/QgUEM5qFu38"
-      title="How to Join Reflectory as a Client"
-      frameborder="0"
-      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-      allowfullscreen>
-    </iframe>
-  </div>
-
-  <p class="small muted" style="margin-top:10px;">
-    If the video does not load, you can watch it directly on
-    <a href="https://youtube.com/shorts/QgUEM5qFu38" target="_blank" rel="noopener">YouTube</a>.
-  </p>
-</section>
-
+       
       </a>
 
       <nav>
